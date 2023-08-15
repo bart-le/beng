@@ -9,6 +9,7 @@ dependencies:
   - isort=5.12.0
   - autoflake=1.7.5
   - pre-commit=3.3.3
+  - pandas=2.0.3
   - pip=23.2.1
   - pip:
     - mediapipe==0.10.3
