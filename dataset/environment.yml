@@ -1,0 +1,11 @@
+name: pjm
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - black=23.7.0
+  - flake8=6.1.0
+  - isort=5.12.0
+  - autoflake=1.7.5
+  - pre-commit=3.3.3
+prefix: /opt/homebrew/Caskroom/miniforge/base/envs/pjm
