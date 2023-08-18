@@ -16,4 +16,5 @@ dependencies:
     - tensorflow==2.11.1
     - tensorflow-macos==2.13.0
     - tensorflow-metal==1.0.1
+    - tensorflowjs==4.10.0
 prefix: /opt/homebrew/Caskroom/miniforge/base/envs/pjm
