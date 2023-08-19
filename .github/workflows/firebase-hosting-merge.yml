@@ -1,0 +1,24 @@
+name: Deploy to Firebase Hosting on merge
+'on':
+  push:
+    branches:
+      - 3-create-web-app-for-live-evaluation
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./app
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          npm install
+          npm run build
+          cp ../dataset/notebooks/models/tfjs/model.json ../dataset/notebooks/models/tfjs/weights.bin ./dist
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_THESIS_BENG }}'
+          channelId: live
+          projectId: thesis-beng
+          entryPoint: ./app
