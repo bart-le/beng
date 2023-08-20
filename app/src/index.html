@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" href="./favicon.ico" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils_3d@0.3/control_utils_3d.css"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="./styles.scss" crossorigin="anonymous" />
+        <title>Polish Sign Language Alphabet Recognition</title>
+    </head>
+
+    <body>
+        <div id="root">
+            <video id="video" playsinline></video>
+            <canvas id="mirror" width="1280px" height="720px"></canvas>
+            <div id="loading">
+                <div id="spinner"></div>
+            </div>
+            <div id="metrics">
+                <span id="letter"></span>
+                <div id="bar">
+                    <label for="accuracy"></label>
+                    <meter
+                        id="accuracy"
+                        min="0.00"
+                        max="1.00"
+                        low="0.90"
+                        high="0.95"
+                        optimum="0.97"
+                    ></meter>
+                </div>
+            </div>
+            <div id="box">
+                <div id="grid"></div>
+            </div>
+        </div>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3/camera_utils.js"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils_3d@0.3/control_utils_3d.js"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3/drawing_utils.js"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4/hands.js"
+            crossorigin="anonymous"
+        ></script>
+        <script type="module" src="./index.js" crossorigin="anonymous"></script>
+    </body>
+</html>

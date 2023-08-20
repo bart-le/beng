@@ -1,0 +1,138 @@
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+body {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    transform-origin: 0px 0px;
+    color: #fff;
+}
+
+#root {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 100%;
+}
+
+#video {
+    position: absolute;
+    display: none;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+    &.selfie {
+        transform: scale(-1, 1);
+    }
+}
+
+#mirror {
+    position: relative;
+    display: block;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+#loading {
+    position: absolute;
+    display: flex;
+    backface-visibility: hidden;
+    opacity: 1;
+    transition: opacity 1s;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: red;
+
+    #spinner {
+        position: relative;
+        width: 170px;
+        height: 85px;
+        top: 15px;
+        left: 15px;
+        border-radius: 85px 85px 0 0;
+        transform-origin: 50% 100%;
+        animation: spin 1s linear infinite;
+        background-color: white;
+    }
+}
+
+.loaded #loading {
+    opacity: 0;
+}
+
+#box {
+    position: absolute;
+    width: 10%;
+    height: 0;
+    top: 20px;
+    right: 20px;
+    padding-top: 10%;
+
+    #grid {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: #9999;
+    }
+}
+
+#metrics {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 10%;
+    height: 0;
+    padding-top: 10%;
+    top: 20px;
+    left: 20px;
+    font-family: monospace;
+    font-weight: bold;
+    color: #fff;
+
+    #letter {
+        position: absolute;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        font-size: 2.5rem;
+        top: 0;
+        left: 0;
+        background-color: #9999;
+    }
+
+    #bar {
+        display: inline-flex;
+        align-items: center;
+        flex-direction: column-reverse;
+        width: 100%;
+        margin-top: 5px;
+        font-size: 1rem;
+
+        meter {
+            width: 100%;
+        }
+    }
+}
