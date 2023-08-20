@@ -11,10 +11,7 @@ jobs:
         working-directory: ./app
     steps:
       - uses: actions/checkout@v3
-      - run: |
-          npm install
-          npm run build
-          cp ../dataset/notebooks/models/tfjs/model.json ../dataset/notebooks/models/tfjs/weights.bin ./dist
+      - run: npm install && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
