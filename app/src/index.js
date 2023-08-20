@@ -1,6 +1,7 @@
 const { LandmarkGrid, Camera, Hands } = window;
 
 import { Mirror } from "./mirror";
+import { Predictor } from "./predictor";
 
 const root = document.querySelector("#root");
 const spinner = document.querySelector("#loading");
@@ -32,6 +33,8 @@ const mirror = new Mirror({
     }),
 });
 
+const predictor = new Predictor();
+
 const resultsListener = ({
     image,
     multiHandLandmarks,
@@ -52,9 +55,22 @@ const resultsListener = ({
 
     mirror.drawHandLandmarks(multiHandLandmarks, multiHandedness);
     mirror.updateGrid(multiHandedness, multiHandWorldLandmarks);
+
+    predictor.shiftSequences(multiHandedness, multiHandWorldLandmarks);
+
+    const rightHand = predictor.getRightHandIndex(multiHandedness) !== -1;
+    const currentAccuracy = rightHand
+        ? predictor.getAccuracy().toFixed(5)
+        : null;
+
+    letter.innerHTML = rightHand ? predictor.getSign() : "";
+    label.innerHTML = currentAccuracy;
+    meter.value = currentAccuracy;
 };
 
 const init = async () => {
+    await predictor.init();
+
     spinner.ontransitionend = () => {
         spinner.style.display = "none";
     };
