@@ -1,0 +1,38 @@
+{
+    "name": "pjm",
+    "version": "1.0.0",
+    "description": "Polish Sign Language Alphabet Recognition",
+    "devDependencies": {
+        "@parcel/css": "^1.14.0",
+        "@parcel/transformer-sass": "^2.9.3",
+        "buffer": "^6.0.3",
+        "parcel": "^2.9.3",
+        "prettier": "^3.0.2",
+        "process": "^0.11.10"
+    },
+    "scripts": {
+        "start": "parcel ./src/index.html",
+        "build": "parcel build ./src/index.html --no-scope-hoist && cp ../dataset/notebooks/models/tfjs/model.json ../dataset/notebooks/models/tfjs/weights.bin ./dist"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/bart-le/beng.git"
+    },
+    "keywords": [
+        "pjm",
+        "polish sign language",
+        "language",
+        "action recognition",
+        "pose estimation",
+        "hand pose"
+    ],
+    "author": "Bart Le",
+    "bugs": {
+        "url": "https://github.com/bart-le/beng/issues"
+    },
+    "homepage": "https://github.com/bart-le/beng#readme",
+    "dependencies": {
+        "@parcel/watcher": "^2.2.0",
+        "@tensorflow/tfjs": "^4.10.0"
+    }
+}
