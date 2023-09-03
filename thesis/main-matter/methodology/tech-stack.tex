@@ -1,0 +1,101 @@
+\section{Stos technologiczny}
+\label{sec:tech-stack}
+
+Do wykonania projektu wykorzystano powszechnie używane języki programowania: Python oraz JavaScript. Według corocznej ankiety przeprowadzonej przez Stack Overflow w 2023~\cite{stackoverflow2023}, są to dwa najbardziej popularne języki programowania wśród programistów. Obydwa języki posiadają ogromną gamę wspieranych bibliotek open-source, a ich duża popularność oznacza łatwość w odnalezieniu zasobów online, najczęściej przystępne dokumentacje oraz aktywną społeczność deweloperów w sieci.
+
+\subsection{Języki programowania}
+\label{subsec:programming-languages}
+
+\subsubsection{Python}
+\label{subsubsec:python}
+
+Python jest wykorzystywany w wielu obszarach programowania i ma szerokie zastosowanie w dziedzinach technologii, nauki i biznesu. Python jest ceniony za swoją czytelność i wydajność. Został stworzony po raz pierwszy wydany w 1991 roku przez Guido van Rossuma~\cite{vanRossum1995}.
+
+\subsubsection{JavaScript}
+\label{subsubsec:javascript}
+
+JavaScript jest powszechnie używany w tworzeniu interaktywnych i dynamicznych stron internetowych oraz aplikacji webowych. Został stworzony w 1995 roku przez Brendana Eicha w celu nadania stronom internetowym interaktywności i zdolności do reagowania na działania użytkownika w przeglądarkach internetowych~\cite{severance2012}. Obecnie jest używany nie tylko do tworzenia stron internetowych, ale także w różnych obszarach programowania, takich jak tworzenie aplikacji webowych, mobilnych, gier, aplikacji desktopowych.
+
+\subsection{Systemy zarządzania bibliotekami}
+\label{subsec:package-managers}
+
+\subsubsection{Conda}
+\label{subsubsec:conda}
+
+Conda została początkowo stworzona jako narzędzie do zarządzania pakietami w języku Python, ale w późniejszych iteracjach została rozszerzona, aby obsługiwać również pakiety w innych językach programowania i dostarczać kompleksowe środowiska wirtualne na wielu platformach~\cite{gruning2018}.
+
+\subsubsection{Node.js}
+\label{subsubsec:node-js}
+
+Środowisko wykonawcze oparte na silniku JavaScript V8 stworzonym przez Google. Node.js umożliwia uruchamianie skryptów i aplikacji napisanych w języku JavaScript poza przeglądarką internetową na serwerze. Jest często używany do tworzenia aplikacji zorientowanych na przetwarzanie danych i komunikację między klientami a serwerem~\cite{tilkov2010}.
+
+\subsubsection{NPM}
+\label{subsubsec:npm}
+
+NPM, czyli Node Package Manager, jest domyślnym narzędziem do zarządzania pakietami i modułami w ekosystemie Node.js.
+
+\subsection{Biblioteki}
+\label{subsec:libraries}
+
+\subsubsection{OpenCV}
+\label{subsubsec:opencv}
+
+Zawiera funkcjonalności do przetwarzania obrazu i analizy wizualnej. Dostarcza ona narzędzia do manipulacji obrazami, zarówno statycznymi, jak i sekwencjami wideo.
+
+\subsubsection{NumPy}
+\label{subsubsec:numpy}
+
+Biblioteka do obliczeń numerycznych w języku Python. Zapewnia wsparcie dla dużych tablic wielowymiarowych oraz funkcji matematycznych do wykonywania operacji na tablicach.
+
+\subsubsection{Pandas}
+\label{subsubsec:pandas}
+
+Pandas jest biblioteką do analizy danych, która opiera się na NumPy i dostarcza narzędzia do efektywnego manipulowania danymi w postaci tabel i szeregów czasowych.
+
+\subsubsection{FFmpeg}
+\label{subsubsec:ffmpeg}
+
+Narzędzie wiersza poleceń służące do przetwarzania multimediów, takich jak wideo, dźwięk i obraz. Jest to kompleksowy zestaw bibliotek i programów umożliwiających konwersję, kompresję, dekompresję, edycję, transkodowanie i inne operacje na plikach multimedialnych.
+
+\subsubsection{MediaPipe}
+\label{subsubsec:mediapipe}
+
+MediaPipe dostarcza zestaw narzędzi i algorytmów do analizy obrazu i dźwięku, co pozwala na rozpoznawanie twarzy, gestów, ruchu, wykrywanie obiektów, śledzenie, segmentację i wiele innych zastosowań związanych z przetwarzaniem multimediów.
+
+\subsubsection{Keras}
+\label{subsubsec:keras}
+
+Keras dostarcza prosty i intuicyjny interfejs, który umożliwia szybkie tworzenie modeli sieci neuronowych bez konieczności zagłębiania się w szczegóły techniczne, przez co tworzenie, trenowanie i ewaluacja modeli sieci neuronowych jest prosta w implementacji. Początkowo Keras był osobnym projektem, ale od wersji TensorFlow 2.0 został włączony jako wysokopoziomowy interfejs do budowy modeli w TensorFlow~\cite{tensorflow2019}.
+
+\subsubsection{TensorFlow.js}
+\label{subsubsec:tensorflow-js}
+
+TensorFlow.js to wersja biblioteki TensorFlow stworzona specjalnie dla środowiska przeglądarki internetowej oraz dla środowisk Node.js. Pozwala na tworzenie, trenowanie i wdrażanie modeli uczenia maszynowego i głębokiego uczenia bezpośrednio w przeglądarce lub na serwerze za pomocą JavaScriptu.
+
+\subsubsection{Parcel.js}
+\label{subsubsec:parcel-js}
+
+Parcel.js to narzędzie do budowania aplikacji webowych, które ma na celu uproszczenie procesu konfiguracji i budowy projektów front-endowych.
+
+\subsection{Usługi pośrednie}
+\label{subsec:service-vendors}
+
+\subsubsection{Google Colab}
+\label{subsubsec:google-colab}
+
+Jest to interaktywne środowisko do pisania i uruchamiania kodu na przeglądarce internetowej w języku Python, a także Ruby. Usługa została stworzona przez Google Research. Umożliwia użytkownikom tworzenie notebooków Jupyter bez konieczności lokalnego instalowania oprogramowania czy bibliotek. Ponadto, Google Colab pozwala na wykonywanie obliczeń chmurowych na wirtualnych maszynach serwerów Google za pomocą przydzielonych kart graficznych.
+
+\subsubsection{TensorBoard}
+\label{subsubsec:tensorboard}
+
+Wygodną funkcjonalnością notebooków Google Colab jest gotowa integracja z TensorBoard. Jest to narzędzie wizualizacyjne opracowane przez kontrybutorów TensorFlow, popularnego frameworku do uczenia maszynowego i głębokiego uczenia. TensorBoard służy do monitorowania i wizualizacji różnych aspektów procesu uczenia modeli, co pomaga badaczom oraz inżynierom oprogramowania w zrozumieniu i optymalizacji swoich modeli.
+
+\subsubsection{Firebase}
+\label{subsubsec:firebase}
+
+Firebase Hosting to usługa oferowana przez Google Firebase, która umożliwia łatwe i szybkie hostingowanie witryn aplikacji internetowych. Jest to platforma chmurowa zaprojektowana dla twórców stron i aplikacji, którzy chcą dostarczać swoje treści online w sposób wydajny, niezawodny i skalowalny. Każde wdrożenie aplikacji jest wersjonowane, co pozwala na bezpieczną pracę z kodem w razie błędów na etapie testowania czy nawet przywrócenie konkretnej wersji produkcyjnej. Publikowane domeny dodatkowo mają domyślnie mają włączony protokół SSL, co zapewnia szyfrowanie komunikacji między witryną a użytkownikami. Firebase Hosting dostarcza także funkcje analizy ruchu strony i cyberbezpieczeństwa, w ramach prewencji przed przed atakami DDoS.
+
+\subsubsection{GitHub}
+\label{subsubsec:github}
+
+Jest to popularna platforma wśród programistów i zespołów deweloperskich, która służy do udostępniania i przeglądania projektów. Dodatkowo, dostępna jest też integracja CI/CD poprzez GitHub Actions, która została zostanie wykorzystana do automatyzacji wdrożenia aplikacji webowej. Dzięki integracji z Firebase, proces wdrożenia został zautomatyzowany, testowa wersja aplikacji była publikowana z każdą zmianą w repozytorium.

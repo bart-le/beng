@@ -1,4 +1,4 @@
-const { HAND_CONNECTIONS, drawConnectors, drawLandmarks } = window;
+const { HAND_CONNECTIONS, drawConnectors, drawLandmarks, lerp } = window;
 
 export class Mirror {
     constructor({ video, canvas, context, landmarkGrid }) {
