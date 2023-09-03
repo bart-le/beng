@@ -1,0 +1,408 @@
+\filbreak
+
+\section{Implementacja}
+\label{sec:implementation}
+
+\subsection{Konfiguracja projektu}
+\label{subsec:project-configuration}
+
+Przed przystąpieniem do projektu, należało skonfigurować repozytorium, w którym zostanie umieszczony kod aplikacji, aby mieć możliwość zarządzania stanem aplikacji na każdym etapie wdrożenia, więc potrzebna była rejestracja zmian. Kod źródłowy aplikacji został opublikowany na GitHubie. Jest to platforma służąca do zarządzania kodem źródłowym projektów informatycznych przy użyciu systemu kontroli wersji Git.
+
+Skrypty do zapisu surowych nagrań oraz ekstrakcji lokalizacji stawów ręki zostały napisane w Pythonie. W dalszym etapie stworzono zbiór danych, na którym wytrenowano model, który został docelowo użyty w aplikacji. Pierwszym krokiem było utworzenie wyizolowanego środowiska pracy w Conda. W celu jego ewentualnego odtworzenia na innych platformach, stworzono plik konfiguracyjny w YAML, który jest punktem startowym.
+
+\begin{listing}[H]
+    \color{white}
+    \begin{minted}[label=environment.yaml]{yaml}
+name: pjm
+channels:
+    - conda-forge
+dependencies:
+    - python=3.10
+    - black=23.7.0
+    - opencv=4.8.0
+    - flake8=6.1.0
+    - isort=5.12.0
+    - autoflake=1.7.5
+    - pre-commit=3.3.3
+    - pandas=2.0.3
+    - pip=23.2.1
+    - pip:
+    - mediapipe==0.10.3
+    - tensorflow==2.11.1
+    - tensorflow-macos==2.13.0
+    - tensorflow-metal==1.0.1
+    - tensorflowjs==4.10.0
+    \end{minted}
+    \caption{Konfiguracja środowiska Conda}
+    \label{lst:conda-environment-configuration}
+\end{listing}
+
+Do rozpoczęcia pracy wystarczyło zainicjalizować puste środowisko poprzez NPM i zainstalować potrzebne paczki. Do budowania aplikacji front-endu wykorzystano Parcel.js. Domyślna konfiguracja było gotowa do użycia po zainstalowaniu i nie wymagała skomplikowanych ustawień, aby rozpocząć pracę nad projektem. Pozwoliło to również na minifikację kodu klienckiego oraz usunięcie martwego kodu z niewykorzystanych zależności w bibliotekach javascriptowych~\cite{latendresse2022}.
+
+Nie wykorzystano całego zakresu funkcjonalności TensorFlow.js, więc zbudowany kod wykorzystywał tylko to, co faktycznie zostało importowane w pierwotnym skrypcie. Biblioteki MediaPipe w wersji webowej nie były instalowane jako zależności, a skrypty z CDN (ang. content delivery network) zostały umieszczone na końcu struktury body pliku HTML, przez co były pobierane jednorazowo w momencie uruchomienia strony.
+
+\begin{listing}[H]
+    \color{white}
+    \begin{minted}[label=package.json]{json}
+{
+    "name": "pjm",
+    "version": "1.0.0",
+    "description": "Polish Sign Language Alphabet Recognition",
+    "scripts": {
+        "start": "parcel ./src/index.html",
+        "build": "parcel build ./src/index.html --no-scope-hoist && cp ../dataset/notebooks/models/tfjs/model.json ../dataset/notebooks/models/tfjs/weights.bin ./dist"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/bart-le/beng.git"
+    },
+    "keywords": [
+        "pjm",
+        "polish sign language",
+        "language",
+        "action recognition",
+        "pose estimation",
+        "hand pose"
+    ],
+    "author": "Bart Le",
+    "bugs": {
+        "url": "https://github.com/bart-le/beng/issues"
+    },
+    "homepage": "https://github.com/bart-le/beng#readme",
+    "dependencies": {
+        "@parcel/watcher": "^2.2.0",
+        "@tensorflow/tfjs": "^4.10.0"
+    },
+    "devDependencies": {
+        "@parcel/css": "^1.14.0",
+        "@parcel/transformer-sass": "^2.9.3",
+        "buffer": "^6.0.3",
+        "parcel": "^2.9.3",
+        "prettier": "^3.0.2",
+        "process": "^0.11.10"
+    }
+}
+    \end{minted}
+    \caption{Konfiguracja środowiska NPM}
+    \label{lst:npm-environment-configuration}
+\end{listing}
+
+\subsection{Nagrania}
+\label{subsec:recordings}
+
+W nagraniach wzięło udział 10 praworęcznych osób, z czego każda osoba pokazywała 36 liter alfabetu migowego po 100 razy, co dało nam łącznie 36000 dwusekundowych filmów. Filmy zostały nagrane przy naturalnym świetle dziennym za pomocą aparatu iPhone 11 w orientacji poziomej z odległości 1,5 metra. Osoby na filmach były różnego wzrostu, więc aparat był ustawiony na wysokość połowy ich torsu.
+
+Uchwycono całą sylwetkę osoby od głowy do połowy ud. Każda osoba miała na sobie czarną koszulkę na tle białej ściany dla stałych rezultatów i odpowiedniego kontrastu dłoni. Osoby na nagraniach miały różne rozmiary dłoni, więc umożliwiło to zebranie zestawu danych, który był pod tym względem rozbieżny.
+
+\begin{figure}[H]
+    \centering
+    \colorbox{background}{\includesvg[width=0.5\textwidth]{figures/alphabet}}
+    \caption{Alfabet manualny polskiego języka migowego}
+    \label{fig:pjm-alphabet}
+\end{figure}
+
+W pierwszej iteracji filmy były nagrane na prędkości 30 klatek na sekundę. Założeniem było, że aplikacja będzie dokonywała klasyfikacji sekwencji co określoną ilość czasu, a do tego co klatkę MediaPipe estymuje położenie stawów z przedniej kamery. Jeśli aplikacja miała działać na wszystkich platformach, należało wziąć pod uwagę dużo mniejsze zasoby obliczeniowe telefonu na przeglądarkach mobilnych. Częstotliwość wyświetlania klatek mogła spaść nawet o połowę, stąd zmniejszono liczbę klatek filmów do 15 FPS.
+
+\begin{listing}[H]
+    \color{white}
+    \begin{minted}[label=converter.sh]{bash}
+#!/bin/bash
+
+input="data/video/30_FPS/*"
+fps=15
+
+while getopts "p:r:" flag; do
+    case "$flag" in
+        p) path="$OPTARG";;
+        r) fps="$OPTARG";;
+    esac
+done
+
+for directory in $input; do
+    if [ -d "$directory" ]; then
+        subdirectory_name="${directory##*/}"
+
+        mkdir -p "${path}/${subdirectory_name}"
+
+        for file in "$directory"/*; do
+            filename="${file##*/}"
+            output_file="${path}/${subdirectory_name}/${filename}"
+
+            if [ ! -f "$output_file" ]; then
+                ffmpeg -i "$file" -filter:v fps=$fps "$output_file"
+            fi
+        done
+    fi
+done
+    \end{minted}
+    \caption{Konwersja liczby klatek na sekundę}
+    \label{lst:frame-rate-conversion}
+\end{listing}
+
+\subsection{Ekstrakcja koordynatów dłoni}
+\label{subsec:keypoint-extraction}
+
+W projekcie wykorzystano gotowy model od MediaPipe do określenia położenia stawów dłoni i palców osoby przed kamerą w przestrzeni trójwymiarowej~\cite{vakunov2020}. Umożliwiło to wyciągnięcie potrzebnych danych z nagrań na każdej klatce filmu.
+
+Kod wykonano dla każdego filmu w stworzonym zestawie danych. Z racji, że filmy były nagrywane przy korzystnych warunkach świetlnych, to ustawienie 50\% pewności detekcji oraz śledzenia rąk w zupełności wystarczyło. Każde wywołanie estymacji położenia ręki zwracało między innymi 2 obiekty, które były celem zainteresowania. \mintinline{python}{multi_hand_landmarks} jest kolekcją 21 list koordynatów w 3 wymiarach dla każdego stawu. Każdy taki zestaw 3 parametrów reprezentuje położenie punktu względem obiektywu kamery. Wartości te są znormalizowane do przedziału $\left\langle1;0\right\rangle$ więc np. im bliżej kamery ktoś się znalazł, tym krótszy był parametr głębi w osi $z$.
+
+Drobną wadą modelu detekcji były sporadycznie błędnie klasyfikowane ręce. Znaki na nagraniach były pokazywane wyłącznie prawą ręką, więc szukano ją poprzez odnalezienie najdalej położonego nadgarstka na ekranie, aby mieć pewność, że dane były poprawne.
+
+\begin{listing}[H]
+    \color{white}
+    \begin{minted}[label=landmark-extraction.py]{python}
+def detect_right_hand(multi_hand_landmarks: NamedTuple):
+    right_hand_index = 0
+
+    if multi_hand_landmarks:
+        right_hand = multi_hand_landmarks[right_hand_index]
+        right_hand_x = right_hand.landmark[hands.HandLandmark.WRIST].x
+
+        for hand_index, hand in enumerate(multi_hand_landmarks):
+            if hand.landmark[hands.HandLandmark.WRIST].x >= right_hand_x:
+                right_hand_index = hand_index
+
+    return right_hand_index
+    \end{minted}
+    \caption{Detekcja indeksu prawej ręki}
+    \label{lst:right-hand-detection}
+\end{listing}
+
+Drugą istotną kolekcją była \mintinline{python}{multi_hand_world_landmarks}. Jest to kolekcja o takim samym kształcie danych. Różnica polegała na tym, że każdy parametr był odległością w metrach względem środka ręki. MediaPipe w ramach konwencji uznaje za środek ręki nadgarstek.
+
+\begin{listing}[H]
+    \color{white}
+    \begin{minted}[label=landmark-extraction.py]{python}
+def extract_landmarks(input_path: str, output_path: str) -> None:
+    cap = cv2.VideoCapture(input_path)
+    frames = []
+
+    while cap.isOpened():
+        with hands.Hands(
+            model_complexity=1,
+            min_detection_confidence=0.5,
+            min_tracking_confidence=0.5,
+            max_num_hands=2,
+        ) as estimator:
+            success, frame = cap.read()
+            if not success:
+                break
+
+            frame = cv2.flip(frame, 1)
+            frame.flags.writeable = False
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            results = estimator.process(frame)
+            frame.flags.writeable = True
+            frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+
+            multi_hand_landmarks = results.multi_hand_landmarks
+            multi_hand_world_landmarks = results.multi_hand_world_landmarks
+
+            if multi_hand_landmarks and multi_hand_world_landmarks :
+                right_hand_index = detect_right_hand(multi_hand_landmarks)
+                right_hand = multi_hand_world_landmarks[right_hand_index]
+
+                frame = []
+                for keypoint in right_hand.landmark:
+                    frame.extend([keypoint.x, keypoint.y, keypoint.z])
+
+                frames.append(frame)
+
+    cap.release()
+    df = pd.DataFrame(data=frames, columns=columns)
+    df.to_csv(output_path)
+    \end{minted}
+    \caption{Ekstrakcja koordynatów z nagrań}
+    \label{lst:recordings-landmarks-extraction}
+\end{listing}
+
+W zależności od ustawionych parametrów detekcji, algorytm zwracał maksymalnie tyle rąk ile mu podano. W przypadku skryptu powyżej, algorytm brał pod uwagę co najwyżej dwie. W kodzie poniżej najpierw odwrócony został obraz. MediaPipe domyślnie zakłada, że użytkownik korzysta z przedniej kamery, więc detekcja odbywała się w lustrzanym odbiciu.
+
+Kolejność wykrytych rąk dla obu obiektów była taka sama, więc następnie wystarczyło wyciągnąć dane z indeksu prawej ręki. Co iterowaną klatkę filmu dodawano wiersz tabeli, który był listą parametrów po spłaszczeniu do jednego wymiaru tablic (odległości osi $x$, $y$ oraz $z$ występowały kolejno po sobie). Po dokonaniu detekcji we wszystkich kadrach, dane zapisano do pliku CSV (ang. comma separated values) tworząc obiekt \mintinline{python}{DataFrame}. Metoda została wywoływana dla każdego pliku w surowym zestawie danych.
+
+\subsection{Trenowanie modelu}
+\label{subsec:model-training}
+
+Wyjątkiem w projekcie poza lokalną konfiguracją był notebook Jupyter. Modele klasyfikacji zostały wytrenowane na jednostce graficznej NVIDIA A100 Tensor Core GPU 40GB na Google Colab. Powodem było zapotrzebowanie na większe zasoby mocy obliczeniowej. Konfiguracji środowiska nie była wymagana, a większość używanych bibliotek była gotowa do użycia na maszynie wirtualnej w przestrzeni dyskowej Google. Wgląd w każdy etap trwającego procesu uczenia był możliwy w czasie rzeczywistym dzięki interfejsowi TensorBoard.
+
+Aby przystąpić do trenowania modelu należało załadować zestaw danych. Dokonano tego iterując po wszystkich katalogach wskazanej ścieżki.
+
+\begin{listing}[H]
+    \color{white}
+    \begin{minted}[label=train.ipynb]{python}
+sequences = []
+labels = []
+
+for root, dirs, files in sorted(os.walk(input_directory)):
+    if root is input_directory:
+        continue
+
+    label = os.path.relpath(root, input_directory)
+
+    for file in files:
+        df = pd.read_csv(f"{root}/{file}", index_col=0)
+
+        sequences.append(df.values)
+        labels.append(label)
+
+sequences = np.array(sequences)
+labels = np.array(labels)
+    \end{minted}
+    \caption{Ładowanie danych tabelarycznych}
+    \label{lst:tabular-data-loading}
+\end{listing}
+
+Zanim wytrenowano wstępny model, dokonano podziału zbioru danych na część treningową, testową i walidacyjną. Zbiór treningowy to dane używane do faktycznego uczenia modelu. Niezależnym zbiorem danych, który nie jest wykorzystywany podczas uczenia jest zbiór walidacyjny. Jest używany do oceny modelu po każdej epoce trenowania, gdzie obliczana jest wartość funkcji straty dla monitorowania postępu. Natomiast oddzielnym zbiorem danych, który nie jest używany ani podczas trenowania i walidacji jest zbiór testowy. Służy do ostatecznej ewaluacji wydajności modelu po zakończonym uczeniu.
+
+\begin{listing}[H]
+    \color{white}
+    \begin{minted}[label=train.ipynb]{python}
+label_encoder = LabelEncoder()
+
+encoded = label_encoder.fit_transform(labels)
+
+y = to_categorical(encoded).astype(int)
+X = sequences
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1, random_state=42)
+    \end{minted}
+    \caption{Podział zestawu danych}
+    \label{lst:dataset-splitting}
+\end{listing}
+
+Następnym krokiem była budowa modelu sieci neuronowej, w której warstwy zostały ułożone jedna po drugiej w jednym kierunku. Do tego wykorzystano model \mintinline{python}{Sequential}. Jest to prosty sposób tworzenia modeli sieci neuronowych w przypadku prostych sekwencyjnych struktur. W środku ułożona jest warstwa \mintinline{python}{LSTM}, w celu klasyfikacji sekwencji punktów. Zbiór danych składał się z 36 znaków, więc model dokonywał klasyfikacji wieloklasowej, a zatem jako funkcją straty była entropia krzyżowa \mintinline{python}{CategoricalCrossentropy}. Ostatecznie dane przeszły przez funkcję aktywacji \mintinline{python}{SoftMax} w warstwie wyjściowej.
+
+\begin{listing}[H]
+    \color{white}
+    \begin{minted}[label=train.ipynb]{python}
+n_classes = 36
+n_frames = 30
+n_values = 63
+input_shape = (n_frames, n_values)
+
+initial_model = Sequential(name="initial")
+initial_model.add(Input(shape=input_shape, name="input"))
+initial_model.add(LSTM(units=32, name="lstm"))
+initial_model.add(Dense(units=n_classes, activation="softmax", name="output"))
+
+initial_model.compile(
+    optimizer="adam",
+    loss="categorical_crossentropy",
+    metrics=["categorical_accuracy"]
+)
+    \end{minted}
+    \caption{Budowanie pierwszego modelu}
+    \label{lst:initial-model-building}
+\end{listing}
+
+Do obserwacji trenowania zostały dodane dwa obiekty jako callback. \mintinline{python}{ModelCheckpoint} pozwolił na zapis tymczasowych wag podczas wykonywania metody w razie utraty połączenia lub przerwania procesu, a dzięki \mintinline{python}{TensorBoard} możliwa była analiza statystyk uczenia w czasie rzeczywistym. Początkowo została dobrana mała ilość próbek na epokę, aby zobaczyć jak się zachowuje model.
+
+\begin{listing}[H]
+    \color{white}
+    \begin{minted}[label=train.ipynb]{python}
+initial_model_history = initial_model.fit(
+    x=X_train,
+    y=y_train,
+    validation_data=(X_val, y_val),
+    epochs=25,
+    batch_size=64,
+    use_multiprocessing=True,
+    callbacks=[model_checkpoint, tensorboard]
+)
+    \end{minted}
+    \caption{Trenowanie pierwszego modelu}
+    \label{lst:initial-model-training}
+\end{listing}
+
+W rzeczywistości nie wiadomo było czy otrzymany wynik będzie najlepszy. Liczba epok oraz pozostałych parametrów została losowo dobrana. Model równie dobrze mógł osiągnąć lepsze wyniki dla zupełnie innych wartości. Nie zostały uwzględnione inne wartości stałej uczenia, więc domyślnie Keras ustawił ją na $0.001$.
+
+Do kalibracji pierwszego rozwiązania trzeba było znaleźć optymalne hiperparametry w celu uzyskania lepszych wyników. W nowym modelu dodano dodatkowo warstwy \mintinline{python}{Dropout} i \mintinline{python}{BatchNormalization}.
+
+\begin{listing}[H]
+    \color{white}
+    \begin{minted}[label=train.ipynb]{python}
+def build_model(hp: HyperParameters) -> Model:
+    units = hp.Int("lstm_units", 32, 256, 32)
+    rate = hp.Float("dropout_rate", 0.1, 0.9, 0.1)
+    hp_learning_rate = hp.Choice("learning_rate", values=[1e-2, 1e-3, 1e-4])
+
+    model = Sequential(name="hypermodel")
+    model.add(Input(shape=input_shape, name="input"))
+    model.add(LSTM(units=units, name="tuned_lstm"))
+    model.add(Dropout(rate=rate, name="tuned_dropout"))
+    model.add(BatchNormalization(name="normalization"))
+    model.add(Dense(units=n_classes, activation="softmax", name="output"))
+
+    optimizer = Adam(learning_rate=hp_learning_rate)
+
+    model.compile(
+        optimizer=optimizer,
+        loss="categorical_crossentropy",
+        metrics=["categorical_accuracy"],
+    )
+
+    return model
+    \end{minted}
+    \caption{Budowa hipermodelu}
+    \label{lst:hypermodel-build}
+\end{listing}
+
+Celem było szukanie nowych parametrów po każdym wywołaniu, gdy zaobserwowana wartość funkcji straty nie będzie maleć, stąd tym razem zamiast zapisywać tymczasowe wagi, monitorowano przebieg za pomocą klasy \mintinline{python}{EarlyStopping}. Dzięki temu, nie było przeciwwskazań, aby ustawić dwukrotnie większą liczbę epok. Proces sam miał się zatrzymać, gdy nie zostanie zarejestrowany postęp. Po zakończeniu szukania, wytrenowany został hipermodel najlepszymi parametrami.
+
+\begin{listing}[H]
+    \color{white}
+    \begin{minted}[label=train.ipynb]{python}
+tuner.search(
+    x=X_train,
+    y=y_train,
+    validation_data=(X_val, y_val),
+    epochs=50,
+    batch_size=64,
+    use_multiprocessing=True,
+    callbacks=[early_stopping, tensorboard],
+)
+
+best_hp = tuner.get_best_hyperparameters(num_trials=1)[0]
+
+hypermodel = tuner.hypermodel.build(best_hp)
+
+hypermodel_history = hypermodel.fit(
+    x=X_train,
+    y=y_train,
+    validation_data=(X_val, y_val),
+    initial_epoch=best_hp.values['tuner/initial_epoch'],
+    epochs=50,
+    batch_size=64,
+    use_multiprocessing=True,
+    callbacks=[model_checkpoint, tensorboard]
+)
+    \end{minted}
+    \caption{Szukanie hiperparametrów}
+    \label{lst:hyperparameters-search}
+\end{listing}
+
+Ostatnim krokiem było wytrenowanie modelu z najbardziej optymalnymi parametrami przez taką ilość epok, dla której hipermodel osiągnął najlepsze wyniki.
+
+\begin{listing}[H]
+    \color{white}
+    \begin{minted}[label=train.ipynb]{python}
+val_loss_per_epoch = hypermodel_history.history["val_loss"]
+val_acc_per_epoch = hypermodel_history.history["val_categorical_accuracy"]
+best_loss_epoch = val_loss_per_epoch.index(min(val_loss_per_epoch)) + 1
+
+retrained_hypermodel = tuner.hypermodel.build(best_hp)
+
+retrained_hypermodel_history = retrained_hypermodel.fit(
+    x=X_train,
+    y=y_train,
+    validation_data=(X_val, y_val),
+    epochs=best_loss_epoch,
+    batch_size=64,
+    use_multiprocessing=True,
+    callbacks=[model_checkpoint, tensorboard]
+)
+    \end{minted}
+    \caption{Trenowanie finalnego modelu}
+    \label{lst:final-training}
+\end{listing}
