@@ -151,7 +151,7 @@ Drobną wadą modelu detekcji były sporadycznie błędnie klasyfikowane ręce. 
 \begin{listing}[H]
     \color{white}
     \begin{minted}[label=landmark-extraction.py]{python}
-def detect_right_hand(multi_hand_landmarks: NamedTuple):
+def detect_right_hand(multi_hand_landmarks: NamedTuple) -> int:
     right_hand_index = 0
 
     if multi_hand_landmarks:
