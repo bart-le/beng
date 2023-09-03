@@ -1,0 +1,78 @@
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage[english, polish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[none]{hyphenat}
+\usepackage[citestyle=ieee, bibstyle=ieee, sorting=none, backend=biber]{biblatex}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{float}
+\usepackage{makecell}
+\usepackage{array}
+\usepackage{adjustbox}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\usepackage[chapter]{minted}
+\usepackage{csquotes}
+\usepackage{titling}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage[titles]{tocloft}
+\usepackage{graphicx}
+\usepackage{hamnosys}
+\usepackage{amsmath}
+\usepackage{svg}
+\usepackage{pgfplots}
+\usepackage{tikz}
+
+\addbibresource{bibliography.bib}
+
+\babelprovide[transforms = oneletter.nobreak]{polish}
+
+\sloppy
+\clubpenalty=10000
+\widowpenalty=10000
+\hbadness=10000
+
+\setstretch{1.5}
+\addtocontents{toc}{\vspace{-3pt}}
+
+\setlength{\parindent}{1cm}
+\titleclass{\chapter}{straight}
+\titleformat{\chapter}[block]{\Large\bfseries}{\thechapter}{0.5cm}{}
+\titleformat{\section}[block]{\large\bfseries}{\thesection}{0.5cm}{}
+
+\titlespacing{\chapter}{0pt}{12pt}{3pt}
+\titlespacing{\section}{0pt}{12pt}{3pt}
+\titlespacing{\subsection}{0pt}{12pt}{3pt}
+\titlespacing{\subsubsection}{0pt}{12pt}{3pt}
+
+\renewcommand{\arraystretch}{0.75}
+\renewcommand{\listoflistingscaption}{Spis kodów źródłowych}
+
+\usetikzlibrary{arrows, backgrounds, positioning}
+\pgfplotsset{compat=1.18}
+\pgfplotsset{
+    width=\textwidth,
+    ymajorgrids,
+    major grid style={dashed},
+    every axis plot/.append style={very thick},
+    every tick label/.append style={font=\scriptsize},
+    every axis legend/.append style={font=\scriptsize},
+    scaled ticks=false,
+}
+
+\definecolor{background}{HTML}{4D4D4D}
+\definecolor{train}{HTML}{6CA4f8}
+\definecolor{validation}{HTML}{DB61A2}
+\definecolor{connection}{HTML}{56d364}
+\definecolor{landmark}{HTML}{F78166}
+
+\setminted{bgcolor=background}
+\setminted{frame=single, framesep=0.25cm, framerule=0cm, labelposition=bottomline}
+\setminted{fontsize=\scriptsize, baselinestretch=1.0, breaklines}
+\setmintedinline{style=xcode, bgcolor=white, fontsize=\normalsize}
+\usemintedstyle{github-dark}
+
+\renewcommand\theadset{\footnotesize\bfseries}
