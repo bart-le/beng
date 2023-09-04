@@ -21,7 +21,7 @@ Proces trenowania modelu okazał się niestabilny, co zostało odzwierciedlone n
     \item Stałą uczenia w algorytmie optymalizacyjnym \mintinline{python}{Adam}
 \end{enumerate}
 
-Aby zapobiec zjawisku przetrenowania i jednocześnie przyspieszyć proces trenowania modelu, wdrożono mechanizm callbacku \mintinline{python}{EarlyStopping}. Dzięki temu nie musiano stale monitorować spadku wartości funkcji straty podczas trenowania, ponieważ model samoczynnie zatrzymywał proces uczenia, gdy nie zanotowano już poprawy w wynikach. To pozwoliło oszczędzić czas i zabezpieczyć się przed przetrenowaniem modelu.
+Aby zapobiec zjawisku przetrenowania i jednocześnie przyspieszyć proces trenowania modeli, wdrożono mechanizm callbacku \mintinline{python}{EarlyStopping} podczas przeszukiwania. Dzięki temu nie musiano stale monitorować spadku wartości funkcji straty podczas trenowania, ponieważ model samoczynnie zatrzymywał proces uczenia, gdy nie zanotowano już poprawy w wynikach. To pozwoliło oszczędzić czas i zabezpieczyć się przed przetrenowaniem modelu.
 
 Dropout działa na zasadzie losowego wyłączania pewnych neuronów lub jednostek w trakcie trenowania. Polega to na tym, że podczas każdej iteracji procesu uczenia, warstwa porzucenia losowo dezaktywuje pewien procent neuronów w danej warstwie. Te dezaktywowane neurony nie biorą udziału w obliczeniach ani w propagacji wstecznej błędów, co prowadzi do pewnego rodzaju usunięcia części informacji z modelu w trakcie treningu. Dzięki temu, model musi polegać na różnych neuronach w różnych iteracjach, co pomaga w zwiększeniu zdolności generalizacji.
 
