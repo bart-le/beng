@@ -271,7 +271,7 @@ X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.
     \label{lst:dataset-splitting}
 \end{listing}
 
-Następnym krokiem była budowa modelu sieci neuronowej, w której warstwy zostały ułożone jedna po drugiej w jednym kierunku. Do tego wykorzystano model \mintinline{python}{Sequential}. Jest to prosty sposób tworzenia modeli sieci neuronowych w przypadku prostych sekwencyjnych struktur. W środku ułożona jest warstwa \mintinline{python}{LSTM}, w celu klasyfikacji sekwencji punktów. Zbiór danych składał się z 36 znaków, więc model dokonywał klasyfikacji wieloklasowej, a zatem jako funkcją straty była entropia krzyżowa \mintinline{python}{CategoricalCrossentropy}. Ostatecznie dane przeszły przez funkcję aktywacji \mintinline{python}{SoftMax} w warstwie wyjściowej.
+Następnym krokiem była budowa modelu sieci neuronowej, w której warstwy zostały ułożone jedna po drugiej w jednym kierunku. Do tego wykorzystano model \mintinline{python}{Sequential}. Jest to prosty sposób tworzenia modeli sieci neuronowych w przypadku sekwencyjnych struktur. W środku ułożona jest warstwa \mintinline{python}{LSTM}, w celu klasyfikacji sekwencji punktów. Zbiór danych składał się z 36 znaków, więc model dokonywał klasyfikacji wieloklasowej, a zatem jako funkcją straty była entropia krzyżowa \mintinline{python}{CategoricalCrossentropy}. Ostatecznie dane przeszły przez funkcję aktywacji \mintinline{python}{SoftMax} w warstwie wyjściowej.
 
 \begin{listing}[H]
     \color{white}
