@@ -216,9 +216,9 @@ def extract_landmarks(input_path: str, output_path: str) -> None:
     \label{lst:recordings-landmarks-extraction}
 \end{listing}
 
-W zależności od ustawionych parametrów detekcji, algorytm zwracał maksymalnie tyle rąk ile mu podano. W przypadku skryptu powyżej, algorytm brał pod uwagę co najwyżej dwie. W kodzie najpierw odwrócony został obraz. MediaPipe domyślnie zakłada, że użytkownik korzysta z przedniej kamery, więc detekcja odbywała się w lustrzanym odbiciu.
+W zależności od ustawionych parametrów detekcji, algorytm zwracał maksymalnie tyle rąk ile mu podano. W przypadku skryptu powyżej, algorytm brał pod uwagę co najwyżej dwie. Obraz najpierw został odwrócony horyzontalnie do kolejnych operacji. MediaPipe domyślnie zakłada, że użytkownik korzysta z przedniej kamery, więc detekcja odbywała się w lustrzanym odbiciu.
 
-Kolejność wykrytych rąk dla obu obiektów była taka sama, więc następnie wystarczyło wyciągnąć dane z indeksu prawej ręki. Co iterowaną klatkę filmu dodawano wiersz tabeli, który był listą parametrów po spłaszczeniu do jednego wymiaru tablic (odległości osi $x$, $y$ oraz $z$ występowały kolejno po sobie). Po dokonaniu detekcji we wszystkich kadrach, dane zapisano do pliku CSV (ang. comma separated values) tworząc obiekt \mintinline{python}{DataFrame}. Metoda została wywoływana dla każdego pliku w surowym zestawie danych.
+Kolejność wykrytych rąk dla obu obiektów była taka sama, więc następnie wystarczyło wyciągnąć dane z ręki o prawym indeksie. Co iterowaną klatkę filmu dodawano wiersz tabeli, który był listą parametrów po spłaszczeniu do jednego wymiaru tablic (odległości osi $x$, $y$ oraz $z$ występowały kolejno po sobie). Po dokonaniu detekcji we wszystkich kadrach, dane zapisano do pliku CSV (ang. comma separated values) tworząc obiekt \mintinline{python}{DataFrame}. Metoda została wywoływana dla każdego pliku w surowym zestawie danych.
 
 \subsection{Trenowanie modelu}
 \label{subsec:model-training}
