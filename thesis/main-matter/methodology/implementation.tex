@@ -315,7 +315,7 @@ initial_model_history = initial_model.fit(
     \label{lst:initial-model-training}
 \end{listing}
 
-W rzeczywistości nie wiadomo było czy otrzymany wynik będzie najlepszy. Liczba epok oraz pozostałych parametrów została losowo dobrana. Model równie dobrze mógł osiągnąć lepsze wyniki dla zupełnie innych wartości. Nie zostały uwzględnione inne wartości stałej uczenia, więc domyślnie Keras ustawił ją na $0.001$.
+W rzeczywistości nie wiadomo było czy otrzymany wynik będzie najlepszy. Liczba epok oraz pozostałych parametrów została losowo dobrana. Model równie dobrze mógł osiągnąć lepsze wyniki dla zupełnie innych wartości. Nie zostały uwzględnione inne wartości stałej uczenia, więc domyślnie algorytm \mintinline{python}{Adam} ustawił ją na $0.001$.
 
 Do kalibracji pierwszego rozwiązania trzeba było znaleźć optymalne hiperparametry w celu uzyskania lepszych wyników. W nowym modelu dodano dodatkowo warstwy \mintinline{python}{Dropout} i \mintinline{python}{BatchNormalization}.
 
