@@ -11,7 +11,7 @@ keypoints = [keypoint.name for keypoint in hands.HandLandmark]
 columns = [f"{keypoint}_{axis}" for keypoint in keypoints for axis in ["x", "y", "z"]]
 
 
-def detect_right_hand(multi_hand_landmarks: NamedTuple):
+def detect_right_hand(multi_hand_landmarks: NamedTuple) -> int:
     """
     Detects right hand by comparing furthest wrist points of a mirrored video.
 

@@ -92,7 +92,7 @@ Nie wykorzystano całego zakresu funkcjonalności TensorFlow.js, więc zbudowany
 
 W nagraniach wzięło udział 10 praworęcznych osób, z czego każda osoba pokazywała 36 liter alfabetu migowego po 100 razy, co dało nam łącznie 36000 dwusekundowych filmów. Filmy zostały nagrane przy naturalnym świetle dziennym za pomocą aparatu iPhone 11 w orientacji poziomej z odległości 1,5 metra. Osoby na filmach były różnego wzrostu, więc aparat był ustawiony na wysokość połowy ich torsu.
 
-Uchwycono całą sylwetkę osoby od głowy do połowy ud. Każda osoba miała na sobie czarną koszulkę na tle białej ściany dla stałych rezultatów i odpowiedniego kontrastu dłoni. Osoby na nagraniach miały różne rozmiary dłoni, więc umożliwiło to zebranie zestawu danych, który był pod tym względem rozbieżny.
+Uchwycono całą sylwetkę osób od głowy do połowy ud. Każda osoba miała na sobie czarną koszulkę na tle białej ściany dla stałych rezultatów i odpowiedniego kontrastu dłoni. Osoby na nagraniach miały różne rozmiary dłoni, więc umożliwiło to zebranie zestawu danych, który był pod tym względem rozbieżny.
 
 \begin{figure}[H]
     \centering
@@ -151,7 +151,7 @@ Drobną wadą modelu detekcji były sporadycznie błędnie klasyfikowane ręce. 
 \begin{listing}[H]
     \color{white}
     \begin{minted}[label=landmark-extraction.py]{python}
-def detect_right_hand(multi_hand_landmarks: NamedTuple):
+def detect_right_hand(multi_hand_landmarks: NamedTuple) -> int:
     right_hand_index = 0
 
     if multi_hand_landmarks:
@@ -168,7 +168,7 @@ def detect_right_hand(multi_hand_landmarks: NamedTuple):
     \label{lst:right-hand-detection}
 \end{listing}
 
-Drugą istotną kolekcją była \mintinline{python}{multi_hand_world_landmarks}. Jest to kolekcja o takim samym kształcie danych. Różnica polegała na tym, że każdy parametr był odległością w metrach względem środka ręki. MediaPipe w ramach konwencji uznaje za środek ręki nadgarstek.
+Drugą istotną kolekcją była \mintinline{python}{multi_hand_world_landmarks}. Jest to kolekcja o takim samym kształcie danych. Różnica polegała na tym, że każdy parametr był relatywną odległością w metrach względem środka ręki. MediaPipe w ramach konwencji uznaje za środek ręki nadgarstek.
 
 \begin{listing}[H]
     \color{white}
@@ -216,9 +216,9 @@ def extract_landmarks(input_path: str, output_path: str) -> None:
     \label{lst:recordings-landmarks-extraction}
 \end{listing}
 
-W zależności od ustawionych parametrów detekcji, algorytm zwracał maksymalnie tyle rąk ile mu podano. W przypadku skryptu powyżej, algorytm brał pod uwagę co najwyżej dwie. W kodzie poniżej najpierw odwrócony został obraz. MediaPipe domyślnie zakłada, że użytkownik korzysta z przedniej kamery, więc detekcja odbywała się w lustrzanym odbiciu.
+W zależności od ustawionych parametrów detekcji, algorytm zwracał maksymalnie tyle rąk ile mu podano. W przypadku skryptu powyżej, algorytm brał pod uwagę co najwyżej dwie. Obraz najpierw został odwrócony horyzontalnie do kolejnych operacji. MediaPipe domyślnie zakłada, że użytkownik korzysta z przedniej kamery, więc detekcja odbywała się w lustrzanym odbiciu.
 
-Kolejność wykrytych rąk dla obu obiektów była taka sama, więc następnie wystarczyło wyciągnąć dane z indeksu prawej ręki. Co iterowaną klatkę filmu dodawano wiersz tabeli, który był listą parametrów po spłaszczeniu do jednego wymiaru tablic (odległości osi $x$, $y$ oraz $z$ występowały kolejno po sobie). Po dokonaniu detekcji we wszystkich kadrach, dane zapisano do pliku CSV (ang. comma separated values) tworząc obiekt \mintinline{python}{DataFrame}. Metoda została wywoływana dla każdego pliku w surowym zestawie danych.
+Kolejność wykrytych rąk dla obu obiektów była taka sama, więc następnie wystarczyło wyciągnąć dane z ręki o prawym indeksie. Co iterowaną klatkę dodawano wiersz tabeli, który był listą współrzędnych po spłaszczeniu do jednego wymiaru tablic (odległości osi $x$, $y$ oraz $z$ występowały kolejno po sobie). Po dokonaniu detekcji we wszystkich kadrach filmu, z utworzonego obiektu \mintinline{python}{DataFrame} zapisano dane do pliku CSV (ang. comma separated values). Metoda została wywoływana dla każdego pliku w surowym zestawie danych.
 
 \subsection{Trenowanie modelu}
 \label{subsec:model-training}
@@ -271,7 +271,7 @@ X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.
     \label{lst:dataset-splitting}
 \end{listing}
 
-Następnym krokiem była budowa modelu sieci neuronowej, w której warstwy zostały ułożone jedna po drugiej w jednym kierunku. Do tego wykorzystano model \mintinline{python}{Sequential}. Jest to prosty sposób tworzenia modeli sieci neuronowych w przypadku prostych sekwencyjnych struktur. W środku ułożona jest warstwa \mintinline{python}{LSTM}, w celu klasyfikacji sekwencji punktów. Zbiór danych składał się z 36 znaków, więc model dokonywał klasyfikacji wieloklasowej, a zatem jako funkcją straty była entropia krzyżowa \mintinline{python}{CategoricalCrossentropy}. Ostatecznie dane przeszły przez funkcję aktywacji \mintinline{python}{SoftMax} w warstwie wyjściowej.
+Następnym krokiem była budowa modelu sieci neuronowej, w której warstwy zostały ułożone jedna po drugiej w jednym kierunku. Do tego wykorzystano model \mintinline{python}{Sequential}. Jest to prosty sposób tworzenia modeli sieci neuronowych w przypadku sekwencyjnych struktur. W środku ułożona jest warstwa \mintinline{python}{LSTM}, w celu klasyfikacji sekwencji punktów. Zbiór danych składał się z 36 znaków, więc model dokonywał klasyfikacji wieloklasowej, a zatem jako funkcją straty była entropia krzyżowa \mintinline{python}{CategoricalCrossentropy}. Ostatecznie dane przeszły przez funkcję aktywacji \mintinline{python}{SoftMax} w warstwie wyjściowej.
 
 \begin{listing}[H]
     \color{white}
@@ -289,7 +289,7 @@ initial_model.add(Dense(units=n_classes, activation="softmax", name="output"))
 initial_model.compile(
     optimizer="adam",
     loss="categorical_crossentropy",
-    metrics=["categorical_accuracy"]
+    metrics=["categorical_accuracy"],
 )
     \end{minted}
     \caption{Budowanie pierwszego modelu}
@@ -308,14 +308,14 @@ initial_model_history = initial_model.fit(
     epochs=25,
     batch_size=64,
     use_multiprocessing=True,
-    callbacks=[model_checkpoint, tensorboard]
+    callbacks=[model_checkpoint, tensorboard, metrics],
 )
     \end{minted}
     \caption{Trenowanie pierwszego modelu}
     \label{lst:initial-model-training}
 \end{listing}
 
-W rzeczywistości nie wiadomo było czy otrzymany wynik będzie najlepszy. Liczba epok oraz pozostałych parametrów została losowo dobrana. Model równie dobrze mógł osiągnąć lepsze wyniki dla zupełnie innych wartości. Nie zostały uwzględnione inne wartości stałej uczenia, więc domyślnie Keras ustawił ją na $0.001$.
+W rzeczywistości nie wiadomo było czy otrzymany wynik będzie najlepszy. Liczba epok oraz pozostałych parametrów została losowo dobrana. Model równie dobrze mógł osiągnąć lepsze wyniki dla zupełnie innych wartości. Nie zostały uwzględnione inne wartości stałej uczenia, więc domyślnie algorytm \mintinline{python}{Adam} ustawił ją na $0.001$.
 
 Do kalibracji pierwszego rozwiązania trzeba było znaleźć optymalne hiperparametry w celu uzyskania lepszych wyników. W nowym modelu dodano dodatkowo warstwy \mintinline{python}{Dropout} i \mintinline{python}{BatchNormalization}.
 
@@ -371,11 +371,11 @@ hypermodel_history = hypermodel.fit(
     x=X_train,
     y=y_train,
     validation_data=(X_val, y_val),
-    initial_epoch=best_hp.values['tuner/initial_epoch'],
+    initial_epoch=best_hp.values["tuner/initial_epoch"],
     epochs=50,
     batch_size=64,
     use_multiprocessing=True,
-    callbacks=[model_checkpoint, tensorboard]
+    callbacks=[model_checkpoint, tensorboard, metrics],
 )
     \end{minted}
     \caption{Szukanie hiperparametrów}
@@ -400,7 +400,7 @@ retrained_hypermodel_history = retrained_hypermodel.fit(
     epochs=best_loss_epoch,
     batch_size=64,
     use_multiprocessing=True,
-    callbacks=[model_checkpoint, tensorboard]
+    callbacks=[model_checkpoint, tensorboard, metrics],
 )
     \end{minted}
     \caption{Trenowanie finalnego modelu}

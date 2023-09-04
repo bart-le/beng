@@ -1,9 +1,9 @@
 \section{Aplikacja webowa}
 \label{sec:web-application}
 
-Po konwersji modelu oraz wag na javascriptową wersję biblioteki TensorFlow.js, algorytm dobrze rozpoznawał statyczne znaki. W aplikacji estymację pozy dłoni na każdej klatce z kamery robił za nas MediaPipe. Zwracane były również w tym samym stylu co współrzędne punktów nadgarstka, stawów palców oraz dalszych paliczków w pythonowej wersji MediaPipe. Podobnie otrzymano listę współrzędnych relatywnych względem odległości od kamery oraz nadgarstka. W rezultacie, umożliwiło to bezproblemowe odwzorowanie wizualne tych dwóch obiektów, nanosząc ówczesną detekcję na wykrytą rękę oraz podgląd danych do klasyfikacji niniejszym modelem w postaci przestrzeni trójwymiarowej na wykresie, który pozwolił na obrót względem osi rzędnej $y$.
+Po konwersji modelu oraz wag na javascriptową wersję biblioteki TensorFlow.js, algorytm bardzo dobrze rozpoznawał statyczne znaki, a dynamiczne ze sporadycznym błędem. W aplikacji estymację pozy dłoni na każdej klatce z kamery robił za nas MediaPipe. Zwracane były również w tym samym stylu co współrzędne punktów nadgarstka, stawów palców oraz dalszych paliczków w pythonowej wersji MediaPipe. Podobnie otrzymano listę współrzędnych relatywnych względem odległości od kamery oraz nadgarstka. W rezultacie, umożliwiło to bezproblemowe odwzorowanie wizualne tych dwóch obiektów, nanosząc ówczesną detekcję na wykrytą rękę oraz podgląd danych do klasyfikacji w postaci przestrzeni trójwymiarowej na wykresie, który umożliwiał na obrót względem osi rzędnej $y$.
 
-Algorytm aplikacji skutecznie odrzucał klasyfikacje poniżej 90\%, aby uniknąć błędnych klasyfikacji, gdy osoba stojąca przed kamerą wykonywała ruch pomiędzy znakami. W momencie wykrycia lewej ręki, kolor punktów wykresu stawał się czerwony i nie dokonywano cyklicznej klasyfikacji, póki przez 30 ostatnich klatek osoba nie pokazała prawej ręki przed kamerą.
+Algorytm aplikacji skutecznie odrzucał wyniki poniżej 90\%, aby uniknąć błędnych klasyfikacji, gdy osoba stojąca przed kamerą wykonywała ruch pomiędzy znakami. W momencie wykrycia lewej ręki, kolor punktów wykresu stawał się czerwony i nie dokonywano cyklicznej klasyfikacji, póki przez 30 ostatnich klatek osoba nie pokazała prawej ręki przed kamerą.
 
 \begin{figure}[H]
     \centering

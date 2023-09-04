@@ -61,7 +61,7 @@ Danymi wejściowymi każdej klasyfikacji była lista 30 konkretnych sekwencji 63
     \label{tab:mediapipe-keypoint-indices}
 \end{table}
 
-Struktura warstw pierwszego modelu była bardzo prosta, między warstwami wejścia i wyjścia znajdowała się jedynie warstwa LSTM. Wytrenowano model klasyfikacji na mniejszej liczbie epok, aby uniknąć przetrenowania~\cite{dietterich1995}.
+Struktura warstw pierwszego modelu była bardzo prosta. Między warstwami wejścia i wyjścia znajdowała się jedynie warstwa LSTM. Wytrenowano model klasyfikacji na mniejszej liczbie epok, aby uniknąć przetrenowania~\cite{dietterich1995}.
 
 \begin{figure}[H]
     \centering
@@ -213,7 +213,7 @@ Wartość funkcji straty pierwszego modelu wynosiła $0.0966$, a jego średnia d
 
 Tym razem przed szukaniem nowych parametrów modelu zmieniono nieco strukturę warstw w celu zoptymalizowania wyniku. Dodano dodatkowo warstwę porzucenia (ang. dropout layer) oraz warstwę normalizującą próbki danych (ang. batch normalization layer). Targetem była jak najniższa wartość funkcji straty względem zbioru walidacyjnego w celu jak najlepszego rozróżnienia dynamicznych znaków daktylografii.
 
-Abstrahując od później zmienionych parametrów konfiguracji warstwy LSTM, warstwa wejściowa oraz wyjściowa się niczym nie różniły w obydwu modelach.
+Abstrahując od później zmienionych parametrów konfiguracji warstwy LSTM i stałej uczenia, warstwa wejściowa oraz wyjściowa się niczym nie różniły w obydwu modelach.
 
 \begin{figure}[H]
     \centering
