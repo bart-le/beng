@@ -289,7 +289,7 @@ initial_model.add(Dense(units=n_classes, activation="softmax", name="output"))
 initial_model.compile(
     optimizer="adam",
     loss="categorical_crossentropy",
-    metrics=["categorical_accuracy"]
+    metrics=["categorical_accuracy"],
 )
     \end{minted}
     \caption{Budowanie pierwszego modelu}
@@ -308,7 +308,7 @@ initial_model_history = initial_model.fit(
     epochs=25,
     batch_size=64,
     use_multiprocessing=True,
-    callbacks=[model_checkpoint, tensorboard]
+    callbacks=[model_checkpoint, tensorboard, metrics],
 )
     \end{minted}
     \caption{Trenowanie pierwszego modelu}
@@ -371,11 +371,11 @@ hypermodel_history = hypermodel.fit(
     x=X_train,
     y=y_train,
     validation_data=(X_val, y_val),
-    initial_epoch=best_hp.values['tuner/initial_epoch'],
+    initial_epoch=best_hp.values["tuner/initial_epoch"],
     epochs=50,
     batch_size=64,
     use_multiprocessing=True,
-    callbacks=[model_checkpoint, tensorboard]
+    callbacks=[model_checkpoint, tensorboard, metrics],
 )
     \end{minted}
     \caption{Szukanie hiperparametrów}
@@ -400,7 +400,7 @@ retrained_hypermodel_history = retrained_hypermodel.fit(
     epochs=best_loss_epoch,
     batch_size=64,
     use_multiprocessing=True,
-    callbacks=[model_checkpoint, tensorboard]
+    callbacks=[model_checkpoint, tensorboard, metrics],
 )
     \end{minted}
     \caption{Trenowanie finalnego modelu}
