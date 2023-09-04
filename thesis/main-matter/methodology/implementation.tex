@@ -168,7 +168,7 @@ def detect_right_hand(multi_hand_landmarks: NamedTuple) -> int:
     \label{lst:right-hand-detection}
 \end{listing}
 
-Drugą istotną kolekcją była \mintinline{python}{multi_hand_world_landmarks}. Jest to kolekcja o takim samym kształcie danych. Różnica polegała na tym, że każdy parametr był odległością w metrach względem środka ręki. MediaPipe w ramach konwencji uznaje za środek ręki nadgarstek.
+Drugą istotną kolekcją była \mintinline{python}{multi_hand_world_landmarks}. Jest to kolekcja o takim samym kształcie danych. Różnica polegała na tym, że każdy parametr był relatywną odległością w metrach względem środka ręki. MediaPipe w ramach konwencji uznaje za środek ręki nadgarstek.
 
 \begin{listing}[H]
     \color{white}
