@@ -36,7 +36,7 @@ Całka oznaczona jest równa polu powierzchni pod krzywą funkcji $f(x)$ w okre�
 
 > **Przykładowe obliczenie całki $\int{8\cos{4x} \, dx}$**
 >
-> 1.  Podstawienie $4x$ jako nowej zmiennej $t$ i obliczenie pochodnej $t$ względem $x$
+> 1. Podstawienie $4x$ jako nowej zmiennej $t$ i obliczenie pochodnej $t$ względem $x$
 >
 >     $`
 >     \begin{aligned}
@@ -45,15 +45,15 @@ Całka oznaczona jest równa polu powierzchni pod krzywą funkcji $f(x)$ w okre�
 >     \end{aligned}
 >     `$
 >
-> 2.  Podstawienie zmiennych do wyrażenia
+> 2. Podstawienie zmiennych do wyrażenia
 >
 >     $`\begin{aligned}\int{8\cos{t} \, \frac{dt}{4}} = \int{\cancel{8}\cos{t} \, \frac{dt}{\cancel{4}}} = \int{2\cos{t} \, dt}\end{aligned}`$
 >
-> 3.  Uproszczenie wyrażenia wzorem $\int{\cos{x} \, dx} = \sin{x} + C$
+> 3. Uproszczenie wyrażenia wzorem $\int{\cos{x} \, dx} = \sin{x} + C$
 >
 >     $`\begin{aligned}\int{2\cos{t} \, dt} = 2\sin{t} + C\end{aligned}`$
 >
-> 4.  Podstawienie pierwotnej wartości do zmiennej $t$
+> 4. Podstawienie pierwotnej wartości do zmiennej $t$
 >
 >     $`\begin{aligned}\int{8\cos{4x} \, dx} = 2\sin{t} + C = 2\sin{4x} + C\end{aligned}`$
 
@@ -65,7 +65,7 @@ Całka oznaczona jest równa polu powierzchni pod krzywą funkcji $f(x)$ w okre�
 
 > **Przykładowe obliczenie całki $\int{x \sin{x} \, dx}$**
 >
-> 1.  Obliczenie pochodnych funkcji $f$ i $g$
+> 1. Obliczenie pochodnych funkcji $f$ i $g$
 >
 >     $`
 >     \begin{aligned}
@@ -74,11 +74,11 @@ Całka oznaczona jest równa polu powierzchni pod krzywą funkcji $f(x)$ w okre�
 >     \end{aligned}
 >     `$
 >
-> 2.  Podstawienie do wzoru
+> 2. Podstawienie do wzoru
 >
 >     $`\begin{aligned}\int{x\sin{x} \, dx} = x\cos{x} - \int{1 \cdot \cos{x} \, dx}\end{aligned}`$
 >
-> 3.  Uproszczenie wyrażenia
+> 3. Uproszczenie wyrażenia
 >
 >     $`\begin{aligned}x\cos{x} - \int{\cos{x} \, dx} = x\cos{x} - \sin{x} + C\end{aligned}`$
 
@@ -86,11 +86,11 @@ Całka oznaczona jest równa polu powierzchni pod krzywą funkcji $f(x)$ w okre�
 
 > **Przykładowe obliczenie pola pod funkcją $3x^2 + 5$ w przedziale $\left\langle3;5\right\rangle$**
 >
-> 1.  Obliczenie całki $\int{3x^2 + 5 \, dx}$
+> 1. Obliczenie całki $\int{3x^2 + 5 \, dx}$
 >
 >     $`\begin{aligned}\int{3x^2 + 5 \, dx} = x^3 + 5x\end{aligned}`$
 >
-> 2.  Podstawienie do wzoru
+> 2. Podstawienie do wzoru
 >
 >     $`
 >     \begin{aligned}
@@ -875,11 +875,11 @@ Jeśli oba powyższe kroki są spełnione, możemy stwierdzić, że twierdzenie 
 
 > **Przykładowy dowód, że suma pierwszych $n$ liczb naturalnych wynosi $\frac{n(n + 1)}{2}$**
 >
-> 1.  Dla $n = 1$
+> 1. Dla $n = 1$
 >
 >     $`\begin{aligned}1 = \frac{1(1 + 1)}{2}\end{aligned}`$
 >
-> 2.  Założenie, że twierdzenie jest prawdziwe dla pewnego $k$
+> 2. Założenie, że twierdzenie jest prawdziwe dla pewnego $k$
 >
 >     Czyli $1 + 2 + \ldots + k = \frac{k(k + 1)}{2}$, więc należy wykazać, że to jest prawdziwe dla $k + 1$.
 >
