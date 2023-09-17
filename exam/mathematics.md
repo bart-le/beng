@@ -12,7 +12,7 @@ Funkcję $F(x)$ spełniającą powyższy warunek nazywa się funkcją pierwotną
 
 > **Wzór całki nieoznaczonej**
 >
-> $\begin{aligned}\int f(x) \, dx = F(x) + C\end{aligned}$
+> $`\begin{aligned}\int f(x) \, dx = F(x) + C\end{aligned}`$
 >
 > Obecność stałej całkowania $C$ wynika z faktu, że pochodna stałej jest zawsze równa zeru.
 
@@ -22,7 +22,7 @@ Całka oznaczona jest równa polu powierzchni pod krzywą funkcji $f(x)$ w okre�
 
 > **Wzór całki nieoznaczonej**
 >
-> $\begin{aligned}\int_{x_1}^{x_2}{f(x) \, dx} = \left[F(x)\right]_{x_1}^{x_2} = {F(x_2) - F(x_1)}\end{aligned}$
+> $`\begin{aligned}\int_{x_1}^{x_2}{f(x) \, dx} = \left[F(x)\right]_{x_1}^{x_2} = {F(x_2) - F(x_1)}\end{aligned}`$
 
 ### Techniki obliczania całek
 
@@ -38,24 +38,24 @@ Całka oznaczona jest równa polu powierzchni pod krzywą funkcji $f(x)$ w okre�
 >
 > 1.  Podstawienie $4x$ jako nowej zmiennej $t$ i obliczenie pochodnej $t$ względem $x$
 >
->     $
+>     $`
 >     \begin{aligned}
 >         t & = 4x & dt & = 4 \, dx \\
 >         \frac{dt}{dx} & = 4 & dx & = \frac{dt}{4}
 >     \end{aligned}
->     $
+>     `$
 >
 > 2.  Podstawienie zmiennych do wyrażenia
 >
->     $\begin{aligned}\int{8\cos{t} \, \frac{dt}{4}} = \int{\cancel{8}\cos{t} \, \frac{dt}{\cancel{4}}} = \int{2\cos{t} \, dt}\end{aligned}$
+>     $`\begin{aligned}\int{8\cos{t} \, \frac{dt}{4}} = \int{\cancel{8}\cos{t} \, \frac{dt}{\cancel{4}}} = \int{2\cos{t} \, dt}\end{aligned}`$
 >
 > 3.  Uproszczenie wyrażenia wzorem $\int{\cos{x} \, dx} = \sin{x} + C$
 >
->     $\begin{aligned}\int{2\cos{t} \, dt} = 2\sin{t} + C\end{aligned}$
+>     $`\begin{aligned}\int{2\cos{t} \, dt} = 2\sin{t} + C\end{aligned}`$
 >
 > 4.  Podstawienie pierwotnej wartości do zmiennej $t$
 >
->     $\begin{aligned}\int{8\cos{4x} \, dx} = 2\sin{t} + C = 2\sin{4x} + C\end{aligned}$
+>     $`\begin{aligned}\int{8\cos{4x} \, dx} = 2\sin{t} + C = 2\sin{4x} + C\end{aligned}`$
 
 -   **Całkowanie przez części**
 
@@ -67,20 +67,20 @@ Całka oznaczona jest równa polu powierzchni pod krzywą funkcji $f(x)$ w okre�
 >
 > 1.  Obliczenie pochodnych funkcji $f$ i $g$
 >
->     $
+>     $`
 >     \begin{aligned}
 >         f(x) & = x & g'(x) & = \sin{x} \\
 >         f'(x) & = 1 & g(x) & = \cos{x}
 >     \end{aligned}
->     $
+>     `$
 >
 > 2.  Podstawienie do wzoru
 >
->     $\begin{aligned}\int{x\sin{x} \, dx} = x\cos{x} - \int{1 \cdot \cos{x} \, dx}\end{aligned}$
+>     $`\begin{aligned}\int{x\sin{x} \, dx} = x\cos{x} - \int{1 \cdot \cos{x} \, dx}\end{aligned}`$
 >
 > 3.  Uproszczenie wyrażenia
 >
->     $\begin{aligned}x\cos{x} - \int{\cos{x} \, dx} = x\cos{x} - \sin{x} + C\end{aligned}$
+>     $`\begin{aligned}x\cos{x} - \int{\cos{x} \, dx} = x\cos{x} - \sin{x} + C\end{aligned}`$
 
 -   **Obliczanie pola pod krzywą dla przedziału**
 
@@ -88,17 +88,17 @@ Całka oznaczona jest równa polu powierzchni pod krzywą funkcji $f(x)$ w okre�
 >
 > 1.  Obliczenie całki $\int{3x^2 + 5 \, dx}$
 >
->     $\begin{aligned}\int{3x^2 + 5 \, dx} = x^3 + 5x\end{aligned}$
+>     $`\begin{aligned}\int{3x^2 + 5 \, dx} = x^3 + 5x\end{aligned}`$
 >
 > 2.  Podstawienie do wzoru
 >
->     $
+>     $`
 >     \begin{aligned}
 >         \int_{3}^{5}{3x^2 + 5 \, dx} & = \left[x^3 + 5x\right]_3^5 \\
 >         \int_{3}^{5}{3x^2 + 5 \, dx} & = (5^3 + 5 \cdot 5) - (3^3 + 5 \cdot 3) = (125 + 25) - (27 + 15) \\
 >         \int_{3}^{5}{3x^2 + 5 \, dx} & = 150 - 42 = 108
 >     \end{aligned}
->     $
+>     `$
 
 ## Wielomian i szereg Taylora funkcji rzeczywistej
 
@@ -106,15 +106,15 @@ Jeżeli funkcja $f$ ma w przedziale $\left\langle x_0; x \right\rangle$ pochodn�
 
 > **Wzór wielomianu Taylora**
 >
-> $\begin{aligned}f(x) = f(x_0) + \frac{f^{(1)}(x_0)}{1!} \cdot (x - x_0) + \ldots + \frac{f^{(n-1)}(x_0)}{(n-1)!} \cdot (x - x_0)^{n - 1} + \frac{f^{(n)}(c)}{n!} \cdot (x - x_0)^n\end{aligned}$
+> $`\begin{aligned}f(x) = f(x_0) + \frac{f^{(1)}(x_0)}{1!} \cdot (x - x_0) + \ldots + \frac{f^{(n-1)}(x_0)}{(n-1)!} \cdot (x - x_0)^{n - 1} + \frac{f^{(n)}(c)}{n!} \cdot (x - x_0)^n\end{aligned}`$
 >
 > **Wielomian Taylora**
 >
-> $\begin{aligned}f(x_0) + \frac{f^{(1)}(x_0)}{1!} \cdot (x - x_0) + \ldots + \frac{f^{(n-1)}(x_0)}{(n-1)!} \cdot (x - x_0)^{n - 1}\end{aligned}$
+> $`\begin{aligned}f(x_0) + \frac{f^{(1)}(x_0)}{1!} \cdot (x - x_0) + \ldots + \frac{f^{(n-1)}(x_0)}{(n-1)!} \cdot (x - x_0)^{n - 1}\end{aligned}`$
 >
 > **n-ta reszta Lagrange'a rozwinięcia Taylora**
 >
-> $\begin{aligned}R_n = \frac{f^{(n)}(c)}{n!} \cdot (x - x_0)^n\end{aligned}$
+> $`\begin{aligned}R_n = \frac{f^{(n)}(c)}{n!} \cdot (x - x_0)^n\end{aligned}`$
 
 ### Szereg Taylora
 
@@ -122,23 +122,23 @@ Jest to matematyczny sposób przybliżania funkcji różniczkowalnej za pomocą 
 
 > **Wzór szeregu Taylora**
 >
-> $\begin{aligned}\sum_{n = 0}^{\infty}{\frac{f^{(n)}(x_0)}{n!} \cdot (x - x_0)^n}\end{aligned}$
+> $`\begin{aligned}\sum_{n = 0}^{\infty}{\frac{f^{(n)}(x_0)}{n!} \cdot (x - x_0)^n}\end{aligned}`$
 
 Szeregiem Maclaurina nazywamy szereg Taylora, dla którego $x_0 = 0$.
 
 > **Wzór szeregu Maclaurina**
 >
-> $\begin{aligned}\sum_{n = 0}^{\infty}{\frac{f^{(n)}(0)}{n!} \cdot x^n}\end{aligned}$
+> $`\begin{aligned}\sum_{n = 0}^{\infty}{\frac{f^{(n)}(0)}{n!} \cdot x^n}\end{aligned}`$
 
 ## Układy równań liniowych, różne metody rozwiazywania, liczba rozwiązań
 
-Układem $m$ równań liniowych z $n$ niewiadomymi $x_1$, $x_2$, ..., $x_n$, gdzie $m$, $n \in \N$ nazywamy układ równań, gdzie $a_{ij} \in \R$, $b_i \in \R$ dla $1 \leq i \leq m$ oraz $1 \leq n \leq n$.
+Układem $m$ równań liniowych z $n$ niewiadomymi $x_1$, $x_2$, ..., $x_n$, gdzie $m$, $n \in \mathbb{N}$ nazywamy układ równań, gdzie $a_{ij} \in \mathbb{R}$, $b_i \in \mathbb{R}$ dla $1 \leq i \leq m$ oraz $1 \leq n \leq n$.
 
 Rozwiązaniem układu równań liniowych nazywamy ciąg ($x_1$, $x_2$, $\ldots$, $x_n$) liczb rzeczywistych spełniających ten układ. Układ równań, który nie ma rozwiązania, nazywamy układem sprzecznym.
 
 > **Postać układu równań**
 >
-> $
+> $`
 > \begin{aligned}
 >     \begin{cases}
 >         a_{11} x_1 & + & a_{12} x_2 & + & \ldots & + & a_{1n} x_n & = b_1 \\
@@ -147,9 +147,9 @@ Rozwiązaniem układu równań liniowych nazywamy ciąg ($x_1$, $x_2$, $\ldots$,
 >         a_{m1} x_1 & + & a_{m2} x_2 & + & \ldots & + & a_{mn} x_n & = b_m
 >     \end{cases}
 > \end{aligned}
-> $
+> `$
 >
-> $
+> $`
 > \begin{aligned}
 >     \begin{bmatrix}
 >         a_{11} x_1 & + & a_{12} x_2 & + & \ldots & + & a_{1n} x_n \\
@@ -184,7 +184,7 @@ Rozwiązaniem układu równań liniowych nazywamy ciąg ($x_1$, $x_2$, $\ldots$,
 >         b_m
 >     \end{bmatrix}
 > \end{aligned}
-> $
+> `$
 
 ### Metody rozwiązywania
 
@@ -198,16 +198,16 @@ Jest to bardziej ogólna metoda rozwiązywania układów równań liniowych. Pol
 
 > **Przykładowe rozwiązanie metodą Gaussa**
 >
-> $
+> $`
 > A \mid B =
 > \begin{cases}
 >     x_1 & - & 3x_2 & + & 2x_3 & = & 3 \\
 >     x_1 & + & x_2 & - & 2x_3 & = & 1 \\
 >     -2x_1 & - & x_2 & + & x_3 & = & -1
 > \end{cases}
-> $
+> `$
 >
-> $
+> $`
 > A \mid B =
 > \left[
 >     \begin{matrix}
@@ -223,11 +223,11 @@ Jest to bardziej ogólna metoda rozwiązywania układów równań liniowych. Pol
 >     \end{matrix}
 >     \right.
 > \right]
-> $
+> `$
 >
 > 1. Odejmowanie wiersza pierwszego od wiersza drugiego i dwukrotnie od wiersza trzeciego
 >
->     $
+>     $`
 >     A \mid B \sim
 >     \left[
 >         \begin{matrix}
@@ -243,11 +243,11 @@ Jest to bardziej ogólna metoda rozwiązywania układów równań liniowych. Pol
 >         \end{matrix}
 >         \right.
 >     \right]
->     $
+>     `$
 >
 > 2. Dzielenie drugiego wiersza przez 4
 >
->     $
+>     $`
 >     A \mid B \sim
 >     \left[
 >         \begin{matrix}
@@ -263,11 +263,11 @@ Jest to bardziej ogólna metoda rozwiązywania układów równań liniowych. Pol
 >         \end{matrix}
 >         \right.
 >     \right]
->     $
+>     `$
 >
 > 3. Odejmowanie pięciokrotnie wiersza drugiego od wiersza trzeciego
 >
->     $
+>     $`
 >     A \mid B \sim
 >     \left[
 >         \begin{matrix}
@@ -283,11 +283,11 @@ Jest to bardziej ogólna metoda rozwiązywania układów równań liniowych. Pol
 >         \end{matrix}
 >         \right.
 >     \right]
->     $
+>     `$
 >
 > 4. Dzielenie trzeciego wiersza przez 2 i doprowadzenie do macierzy schodkowej
 >
->     $
+>     $`
 >     A \mid B \sim
 >     \left[
 >         \begin{matrix}
@@ -303,33 +303,31 @@ Jest to bardziej ogólna metoda rozwiązywania układów równań liniowych. Pol
 >         \end{matrix}
 >         \right.
 >     \right]
->     $
+>     `$
 >
->     $
+>     $`
 >     A \mid B \sim
 >     \begin{cases}
 >         x_1 & - & 3x_2 & + & 2x_3 & = & 3 \\
 >         & & x_2 & - &  x_3 & = & -0.5 \\
 >         & & & & x_3 & = & -2.25
 >     \end{cases}
->     $
+>     `$
 >
 > 5. Obliczenie niewiadomych
 >
->     $
->     x_3 = -2.25
->     $
+>     $x_3 = -2.25$
 >
->     $
+>     $`
 >     \begin{aligned}
 >         x_2 & - x_3 = -0.5  \\
 >         x_2 & = -0.5 + x_3  \\
 >         x_2 & = -0.5 - 2.25 \\
 >         x_2 & = -2.75 \\
 >     \end{aligned}
->     $
+>     `$
 >
->     $
+>     $`
 >     \begin{aligned}
 >         x_1 & - 3x_2 + 2x_3 = 3 \\
 >         x_1 & = 3 + 3x_2 - 2x_3 \\
@@ -337,7 +335,7 @@ Jest to bardziej ogólna metoda rozwiązywania układów równań liniowych. Pol
 >         x_1 & = 3 - 8.25 + 4.5 \\
 >         x_1 & = -0.75
 >     \end{aligned}
->     $
+>     `$
 
 #### Metoda Cramera
 
@@ -351,13 +349,13 @@ Niech dany będzie układ równań liniowych $x_1 \cdot a_1 + \ldots + x_n \cdot
 
 > **Wzory oznaczonego układu Cramera**
 >
-> $
+> $`
 > \begin{aligned}
 >     x_1 & = \frac{\det(b, a_2, \ldots, a_n)}{\det(a_1, a_2, \ldots, a_n)} \\
 >     & \vdots \\
 >     x_n & = \frac{\det(a_1, \ldots, a_{n-1}, b)}{\det(a_1, \ldots, a_{n-1}, a_n)}
 > \end{aligned}
-> $
+> `$
 
 2. $\det( a_1, \ldots, a_n) = 0$
 
@@ -367,36 +365,36 @@ Niech dany będzie układ równań liniowych $x_1 \cdot a_1 + \ldots + x_n \cdot
 
 > **Wzór Cramera dla macierzy kwadratowej drugiego stopnia**
 >
-> $
+> $`
 > \begin{aligned}
 >     A \mid B = \begin{cases}
 >         ax + by = e \\
 >         cx + dy = f
 >     \end{cases}
 > \end{aligned}
-> $
+> `$
 >
-> $
+> $`
 > \begin{aligned}
 >     \begin{bmatrix}a & b \\ c & d\end{bmatrix}\begin{bmatrix}x \\ y\end{bmatrix} = \begin{bmatrix}e \\ f\end{bmatrix}
 > \end{aligned}
-> $
+> `$
 >
-> $
+> $`
 > \begin{aligned}
 >     x = \frac{\begin{vmatrix}e & b \\ f & d\end{vmatrix}}{\begin{vmatrix}a & b \\ c & d\end{vmatrix}} = \frac{e \cdot d - b \cdot f}{a \cdot d - b \cdot c}
 > \end{aligned}
-> $
+> `$
 >
-> $
+> $`
 > \begin{aligned}
 >     y = \frac{\begin{vmatrix}a & e \\ c & f\end{vmatrix}}{\begin{vmatrix}a & b \\ c & d\end{vmatrix}} = \frac{a \cdot f - e \cdot c}{a \cdot d - b \cdot c}
 > \end{aligned}
-> $
+> `$
 >
 > **Przykładowe rozwiązanie metodą Cramera**
 >
-> $
+> $`
 > \begin{aligned}
 >     A \mid B = \begin{cases}
 >         2x + 5y + 3z = 5 \\
@@ -404,9 +402,9 @@ Niech dany będzie układ równań liniowych $x_1 \cdot a_1 + \ldots + x_n \cdot
 >         3x + 8y + 4z = 9
 >     \end{cases}
 > \end{aligned}
-> $
+> `$
 >
-> $
+> $`
 > \begin{aligned}
 >     \det{A} & = \begin{vmatrix}2 & 5 & 3 \\ 4 & 2 & 5 \\ 3 & 8 & 4\end{vmatrix} = 16 + 96 + 75 - 18 - 80 - 80 = 9 \\
 >     \\
@@ -414,16 +412,16 @@ Niech dany będzie układ równań liniowych $x_1 \cdot a_1 + \ldots + x_n \cdot
 >     \det{A_y} & = \begin{vmatrix}2 & 5 & 3 \\ 4 & 4 & 5 \\ 3 & 9 & 4\end{vmatrix} = 32 + 108 + 75 - 36 - 90 - 80 = 9 \\
 >     \det{A_z} & = \begin{vmatrix}2 & 5 & 5 \\ 4 & 2 & 4 \\ 3 & 8 & 9\end{vmatrix} = 36 + 160 + 60 - 30 - 64 - 180 = -18
 > \end{aligned}
-> $
+> `$
 >
-> $
+> $`
 > \begin{aligned}
 >     x & = \frac{\det{A_x}}{\det{A}} & y & = \frac{\det{A_y}}{\det{A}} & z & = \frac{\det{A_z}}{\det{A}} \\
 >     \\
 >     x & = \frac{27}{9} & y & = \frac{9}{9} & z & = \frac{-18}{9} \\
 >     x & = 3 & y & = 1 & z & = -2
 > \end{aligned}
-> $
+> `$
 
 ##### Reguła Sarrusa
 
@@ -431,7 +429,7 @@ Jest to praktyczny sposób obliczania wyznacznika trzeciego stopnia, gdzie skorz
 
 > **Wzór wyznacznika Sarrusa**
 >
-> $
+> $`
 > \begin{aligned}
 >     A = \begin{bmatrix}
 >         a_{11} & a_{12} & a_{13} \\
@@ -439,9 +437,9 @@ Jest to praktyczny sposób obliczania wyznacznika trzeciego stopnia, gdzie skorz
 >         a_{31} & a_{32} & a_{33}
 >     \end{bmatrix}
 > \end{aligned}
-> $
+> `$
 >
-> $
+> $`
 > \begin{aligned}
 >     \det{A} = \begin{vmatrix}
 >         a_{11} & a_{12} & a_{13} \\
@@ -449,7 +447,7 @@ Jest to praktyczny sposób obliczania wyznacznika trzeciego stopnia, gdzie skorz
 >         a_{31} & a_{32} & a_{33}
 >     \end{vmatrix} = a_{11}a_{22}a_{33}+a_{21}a_{32}a_{13}+a_{31}a_{12}a_{23}-a_{21}a_{12}a_{33}-a_{11}a_{32}a_{23}-a_{31}a_{22}a_{13}
 > \end{aligned}
-> $
+> `$
 
 ##### Rozwinięcie Laplace'a
 
@@ -459,31 +457,31 @@ Wzór rekurencyjny określający wyznacznik n-tego stopnia macierzy kwadratowej 
 >
 > -   względem wiersza
 >
->     $\begin{aligned}\det{A} = \sum_{i = 1}^{n}{(-1)^{i + j} \cdot a_{ij} \cdot A_{ij}}\end{aligned}$
+>     $`\begin{aligned}\det{A} = \sum_{i = 1}^{n}{(-1)^{i + j} \cdot a_{ij} \cdot A_{ij}}\end{aligned}`$
 >
 > -   względem kolumny
 >
->     $\begin{aligned}\det{A} = \sum_{j = 1}^{n}{(-1)^{i + j} \cdot a_{ij} \cdot A_{ij}}\end{aligned}$
+>     $`\begin{aligned}\det{A} = \sum_{j = 1}^{n}{(-1)^{i + j} \cdot a_{ij} \cdot A_{ij}}\end{aligned}`$
 
 Przy obliczaniu wyznacznika korzysta się z twierdzenia Laplace'a tak długo, aż uzyska się macierze, których wyznaczniki można obliczyć wprost (drugiego, trzeciego stopnia), gdzie $a_{ij}$ jest elementem macierzy w $i$-tym wierszu i $j$-tej kolumnie, a $A_{ij}$ jest dopełnieniem algebraicznym elementu $a_{ij}.$
 
 > **Przykładowe obliczenie względem pierwszego wiersza**
 >
-> $
+> $`
 > A =
 > \begin{bmatrix}
 >     1 & 2 & 3 \\
 >     4 & 5 & 6 \\
 >     7 & 8 & 9
 > \end{bmatrix}
-> $
+> `$
 >
-> $
+> $`
 > \begin{aligned}
 >     \det{A} & = (-1)^{1 + 1} \cdot 1 \cdot \begin{vmatrix} 5 & 6 \\ 8 & 9 \end{vmatrix} + (-1)^{1 + 2} \cdot 2 \cdot \begin{vmatrix} 4 & 6 \\ 7 & 9 \end{vmatrix} + (-1)^{1 + 3} \cdot 3 \cdot \begin{vmatrix} 4 & 5 \\ 7 & 8 \end{vmatrix} \\
 >     \det{A} & = 1 \cdot 1 \cdot (-3) - 1 \cdot 2 \cdot (-6) + 1 \cdot 3 \cdot (-3) = -3 + 12 - 9 = 0
 > \end{aligned}
-> $
+> `$
 
 ### Twierdzenie Kroneckera-Capelliego
 
@@ -504,15 +502,15 @@ Liczbę zespoloną $\lambda$ nazywamy wartością własną macierzy kwadratowej 
 
 > **Przykładowe wyznaczenie wartości i wektorów własnych macierzy**
 >
-> $
+> $`
 > A =
 > \begin{bmatrix}
 >     6 & 3 \\
 >     2 & 5
 > \end{bmatrix}
-> $
+> `$
 >
-> $
+> $`
 > \begin{aligned}
 >     A_\lambda & =
 >     \begin{bmatrix}
@@ -540,21 +538,21 @@ Liczbę zespoloną $\lambda$ nazywamy wartością własną macierzy kwadratowej 
 >         2 & 5 - \lambda
 >     \end{bmatrix}
 > \end{aligned}
-> $
+> `$
 >
-> $
+> $`
 > \det{A_\lambda} = (6 − \lambda)(5 − \lambda) - 2 \cdot 3 = \lambda^2 − 11\lambda + 24
-> $
+> `$
 >
-> $
+> $`
 > \begin{aligned}
 >     \Delta & = 25 \\
 >     \lambda_1 & = \frac{11 - 5}{2} = 3 \\
 >     \lambda_2 & = \frac{11 + 5}{2} = 8
 > \end{aligned}
-> $
+> `$
 >
-> $
+> $`
 > \begin{aligned}
 >     A_{\lambda_1} & =
 >     \begin{bmatrix}
@@ -567,9 +565,9 @@ Liczbę zespoloną $\lambda$ nazywamy wartością własną macierzy kwadratowej 
 >         2 & -3
 >     \end{bmatrix}
 > \end{aligned}
-> $
+> `$
 >
-> $
+> $`
 > \begin{aligned}
 >     v_{\lambda_1} & =
 >     \begin{cases}
@@ -578,9 +576,9 @@ Liczbę zespoloną $\lambda$ nazywamy wartością własną macierzy kwadratowej 
 >     \end{cases} \\
 >     v_{\lambda_1} & = \begin{bmatrix}1 \\ -1\end{bmatrix}
 > \end{aligned}
-> $
+> `$
 >
-> $
+> $`
 > \begin{aligned}
 >     v_{\lambda_2} & =
 >     \begin{cases}
@@ -589,7 +587,7 @@ Liczbę zespoloną $\lambda$ nazywamy wartością własną macierzy kwadratowej 
 >     \end{cases} \\
 >     v_{\lambda_2} & = \begin{bmatrix}3 \\ 2\end{bmatrix}
 > \end{aligned}
-> $
+> `$
 
 ### Zastosowanie wartości własnych w informatyce
 
@@ -718,7 +716,7 @@ flowchart LR
 
 #### Macierz sąsiedztwa
 
-$
+$`
 A = \begin{bmatrix}
     0 & 1 & 0 & 0 & 1 & 0 \\
     1 & 0 & 1 & 0 & 1 & 0 \\
@@ -727,28 +725,28 @@ A = \begin{bmatrix}
     1 & 1 & 0 & 1 & 0 & 0 \\
     0 & 0 & 0 & 1 & 0 & 0
 \end{bmatrix}
-$
+`$
 
 Graf jest reprezentowany jako macierz, gdzie $a_ij$ oznacza liczbę krawędzi między wierzchołkami $i$ i $j$. W przypadku grafów ważonych, komórki zawierające wagi krawędzi.
 
 #### Macierz incydencji
 
-$
+$`
 A = \begin{bmatrix}
-    1 & 1 & 0 & 0 & 0 & 0 & 0 \\
-    0 & 1 & 1 & 0 & 1 & 0 & 0 \\
-    0 & 0 & 1 & 1 & 0 & 0 & 0 \\
-    0 & 0 & 0 & 1 & 0 & 1 & 1 \\
-    1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+    1 & 0 & 0 & 1 & 0 & 0 & 0 \\
+    1 & 1 & 0 & 1 & 1 & 0 & 0 \\
+    0 & 1 & 1 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 & 0 & 1 & 1 \\
+    0 & 0 & 0 & 1 & 1 & 1 & 0 \\
     0 & 0 & 0 & 0 & 0 & 0 & 1
 \end{bmatrix}
-$
+`$
 
 Graf jest reprezentowany jako macierz, gdzie wiersze reprezentują wierzchołki, a kolumny reprezentują krawędzie. W komórkach macierzy jest 1, jeśli dany wierzchołek jest incydentny z daną krawędzią, -1, jeśli krawędź wychodzi z wierzchołka, a 0 w przeciwnym razie.
 
 #### Listy sąsiedztwa
 
-$
+$`
 \begin{aligned}
     1 & \rightarrow 2, 5 \\
     2 & \rightarrow 1, 3, 5 \\
@@ -757,7 +755,7 @@ $
     5 & \rightarrow 1, 2, 4 \\
     6 & \rightarrow 4
 \end{aligned}
-$
+`$
 
 Graf jest reprezentowany jako lista dla każdego wierzchołka, zawierająca informacje o sąsiednich wierzchołkach lub krawędziach.
 
@@ -879,15 +877,15 @@ Jeśli oba powyższe kroki są spełnione, możemy stwierdzić, że twierdzenie 
 >
 > 1.  Dla $n = 1$
 >
->     $\begin{aligned}1 = \frac{1(1 + 1)}{2}\end{aligned}$
+>     $`\begin{aligned}1 = \frac{1(1 + 1)}{2}\end{aligned}`$
 >
 > 2.  Założenie, że twierdzenie jest prawdziwe dla pewnego $k$
 >
 >     Czyli $1 + 2 + \ldots + k = \frac{k(k + 1)}{2}$, więc należy wykazać, że to jest prawdziwe dla $k + 1$.
 >
->     $\begin{aligned}1 + 2 + \ldots + k + (k + 1) = \frac{k(k + 1)}{2} + (k + 1)\end{aligned}$
+>     $`\begin{aligned}1 + 2 + \ldots + k + (k + 1) = \frac{k(k + 1)}{2} + (k + 1)\end{aligned}`$
 >
->     $\begin{aligned}\frac{k(k + 1) + 2(k + 1)}{2} = \frac{(k + 1)(k + 2)}{2}\end{aligned}$
+>     $`\begin{aligned}\frac{k(k + 1) + 2(k + 1)}{2} = \frac{(k + 1)(k + 2)}{2}\end{aligned}`$
 >
 >     Z powyższego dowodu wynika, że twierdzenie jest prawdziwe dla każdej liczby naturalnej.
 
@@ -897,7 +895,7 @@ Twierdzenie teorii prawdopodobieństwa, wiążące prawdopodobieństwa warunkowe
 
 > **Wzór Bayesa**
 >
-> $\begin{aligned}P(A \mid B) = \frac{P(B \mid A) \cdot P(A)}{P(B)}\end{aligned}$
+> $`\begin{aligned}P(A \mid B) = \frac{P(B \mid A) \cdot P(A)}{P(B)}\end{aligned}`$
 
 $A$ i $B$ są zdarzeniami oraz $P(B) \gt 0$.
 
@@ -969,7 +967,7 @@ Cecha ma w populacji rozkład normalny $N(\mu, \sigma)$ przy czym odchylenie sta
 
 > **Przedział ufności dla parametru $\mu$ rozkładu normalnego**
 >
-> $\begin{aligned}P\left(\overline{X} - u_{1-\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} < \mu < \overline{X} + u_{1-\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} \right) = 1 - \alpha\end{aligned}$
+> $`\begin{aligned}P\left(\overline{X} - u_{1-\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} < \mu < \overline{X} + u_{1-\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} \right) = 1 - \alpha\end{aligned}`$
 >
 > -   $n$ – liczebność próby losowej
 > -   $\overline{X}$ – średnia z próby losowej
@@ -982,7 +980,7 @@ Cecha ma w populacji rozkład normalny $N(\mu, \sigma)$, przy czym odchylenie st
 
 > **Przedział ufności dla parametru $\mu$ rozkładu normalnego**
 >
-> $\begin{aligned}P\left(\overline{X} - t_{1 - \frac{\alpha}{2}} \frac{S}{\sqrt{n}} < \mu < \overline{X} + t_{1 - \frac{\alpha}{2}} \frac{S}{\sqrt{n}} \right) = 1 - \alpha\end{aligned}$
+> $`\begin{aligned}P\left(\overline{X} - t_{1 - \frac{\alpha}{2}} \frac{S}{\sqrt{n}} < \mu < \overline{X} + t_{1 - \frac{\alpha}{2}} \frac{S}{\sqrt{n}} \right) = 1 - \alpha\end{aligned}`$
 >
 > -   $n$ – liczebność próby losowej
 > -   $\overline{X}$ – średnia z próby losowej
@@ -997,7 +995,7 @@ Cecha ma w populacji rozkład normalny $N(\mu, \sigma)$, przy czym odchylenie st
 
 > **Przedział ufności dla parametru $n$ rozkładu normalnego**
 >
-> $\begin{aligned}P\left(\overline{X} - u_{1-\frac{\alpha}{2}} \frac{S}{\sqrt{n}} < \mu < \overline{X} + u_{1-\frac{\alpha}{2}} \frac{S}{\sqrt{n}} \right) = 1 - \alpha\end{aligned}$
+> $`\begin{aligned}P\left(\overline{X} - u_{1-\frac{\alpha}{2}} \frac{S}{\sqrt{n}} < \mu < \overline{X} + u_{1-\frac{\alpha}{2}} \frac{S}{\sqrt{n}} \right) = 1 - \alpha\end{aligned}`$
 >
 > -   $n$ – liczebność próby losowej
 > -   $\overline{X}$ – średnia z próby losowej
@@ -1008,13 +1006,13 @@ Cecha ma w populacji rozkład normalny $N(\mu, \sigma)$, przy czym odchylenie st
 
 > **Przedział ufności dla wariancji w populacji o rozkładzie normalnym**
 >
-> $\begin{aligned}P\left(\frac{nS^2}{\chi^2_{1 - \frac{\alpha}{2}, n - 1}} < \sigma^2 < \frac{nS^2}{\chi^2_{\frac{\alpha}{2}, n - 1}} \right) = 1 - \alpha\end{aligned}$
+> $`\begin{aligned}P\left(\frac{nS^2}{\chi^2_{1 - \frac{\alpha}{2}, n - 1}} < \sigma^2 < \frac{nS^2}{\chi^2_{\frac{\alpha}{2}, n - 1}} \right) = 1 - \alpha\end{aligned}`$
 >
 > -   $n$ – liczebność próby losowej
 > -   $S$ – odchylenie standardowe z próby
 > -   $\chi^2_{\frac{\alpha}{2}, n - 1}$ i $\chi^2_{1 - \frac{\alpha}{2}, n - 1}$ – statystyki spełniające odpowiednio nierówności:
->     -   $\begin{aligned}P\left(\chi^2 \geqslant \chi^2_{\frac{\alpha}{2}, n - 1} \right) = \frac{\alpha}{2}\end{aligned}$
->     -   $\begin{aligned}P\left(\chi^2 \geqslant \chi^2_{1 - \frac{\alpha}{2}, n - 1} \right) = 1 - \frac{\alpha}{2}\end{aligned}$
+>     -   $`\begin{aligned}P\left(\chi^2 \geqslant \chi^2_{\frac{\alpha}{2}, n - 1} \right) = \frac{\alpha}{2}\end{aligned}`$
+>     -   $`\begin{aligned}P\left(\chi^2 \geqslant \chi^2_{1 - \frac{\alpha}{2}, n - 1} \right) = 1 - \frac{\alpha}{2}\end{aligned}`$
 
 $\chi^2$ ma rozkład chi-kwadrat z $n - 1$ stopniami swobody.
 
@@ -1024,11 +1022,11 @@ Podobnie jak poprzednio, zwykle stosuje się ten wzór dla małej próby $(n < 3
 
 > **Przedział ufności dla wariancji w populacji o rozkładzie normalnym**
 >
-> $\begin{aligned}P\left(\frac{S}{1+ \frac{u_\alpha}{\sqrt{2n}}} < \sigma < \frac{S}{1 - \frac{u_\alpha}{\sqrt{2n}}} \right) = 1 - \alpha\end{aligned}$
+> $`\begin{aligned}P\left(\frac{S}{1+ \frac{u_\alpha}{\sqrt{2n}}} < \sigma < \frac{S}{1 - \frac{u_\alpha}{\sqrt{2n}}} \right) = 1 - \alpha\end{aligned}`$
 >
 > -   $n$ – liczebność próby losowej
 > -   $S$ – odchylenie standardowe z próby
 > -   $u_\alpha$ – statystyka spełniająca warunek:
->     -   $\begin{aligned}P(- u_\alpha < U < u_\alpha) = 1 - \alpha\end{aligned}$
+>     -   $`\begin{aligned}P(- u_\alpha < U < u_\alpha) = 1 - \alpha\end{aligned}`$
 
 $U$ jest zmienną losową o rozkładzie normalnym $N(0, 1)$.
