@@ -14,7 +14,7 @@ RGB działa na zasadzie addytywnej mieszanki kolorów. W tym modelu, kolory są 
     - Ekran komputera, telewizja, fotografia cyfrowa, oświetlenie sceniczne
 3. **Przykład**:
     - Jeśli mamy wartości R=255, G=0, B=0, otrzymamy czysty czerwony kolor.
-4. **Wady i Zalety**:
+4. **Wady i zalety**:
     - Zaleta: Prostota, szerokie zastosowanie
     - Wada: Niewielki gamut kolorów w porównaniu z rzeczywistością
 
@@ -31,7 +31,7 @@ Model subtraktywny, stosowany w drukarce. W praktyce, różne odcienie kolorów 
     - Druk, zarówno przemysłowy, jak i domowy
 3. **Przykład**:
     - Druk ulotek, plakatów, broszur.
-4. **Wady i Zalety**:
+4. **Wady i zalety**:
     - Zaleta: Duża precyzja w kontekście drukowanego materiału
     - Wada: Ograniczony gamut kolorów, koszty
 
@@ -47,7 +47,7 @@ Te modele percepcyjne są bardziej zorientowane na ludzkie postrzeganie kolorów
     - Edycja grafiki, programy do obróbki obrazów, web design
 3. **Przykład**:
     - Aplikacje takie jak Adobe Photoshop używają modeli HSV/HSL w swoich narzędziach do edycji kolorów.
-4. **Wady i Zalety**:
+4. **Wady i zalety**:
     - Zaleta: Intuicyjność, elastyczność
     - Wada: Trudniejsze do zrozumienia dla początkujących
 
@@ -134,22 +134,22 @@ Algorytm Bresenhama jest techniką rysowania linii, okręgów i innych kształt�
 
 Zasady interakcji człowiek-komputer (HCI) to zbiór wytycznych mających na celu zapewnienie efektywnego, satysfakcjonującego i użytecznego doświadczenia dla użytkowników korzystających z interfejsów komputerowych. Jednym z najbardziej znanych zestawów tych zasad jest heurystyka Nielsena-Molicha, która zawiera 10 podstawowych zasad zaprojektowanych tak, aby pomóc w ocenie użyteczności interfejsów. Zastosowanie tych zasad może znacznie poprawić użyteczność i ergonomię systemów komputerowych, co w konsekwencji prowadzi do zwiększenia satysfakcji i efektywności użytkowników.
 
-1. **Widoczność Statusu Systemu**: System powinien zawsze informować użytkownika o tym, co się dzieje, poprzez odpowiednie komunikaty lub wskaźniki.
+1. **Widoczność statusu systemu**: System powinien zawsze informować użytkownika o tym, co się dzieje, poprzez odpowiednie komunikaty lub wskaźniki.
 
-2. **Zgodność z Rzeczywistością i Systemem**: Interfejs powinien używać języka i konwencji znanych użytkownikowi, takich jak słowa, frazy i koncepty zrozumiałe dla docelowej grupy użytkowników.
+2. **Zgodność z rzeczywistością i systemem**: Interfejs powinien używać języka i konwencji znanych użytkownikowi, takich jak słowa, frazy i koncepty zrozumiałe dla docelowej grupy użytkowników.
 
-3. **Minimalizacja Obciążenia Użytkownika**: Każda niepotrzebna operacja powinna być zminimalizowana lub wyeliminowana, aby ułatwić użytkownikowi realizację zamierzonych celów.
+3. **Minimalizacja obciążenia użytkownika**: Każda niepotrzebna operacja powinna być zminimalizowana lub wyeliminowana, aby ułatwić użytkownikowi realizację zamierzonych celów.
 
-4. **Spójność i Standardy**: Terminy i działania powinny być spójne w różnych częściach interfejsu.
+4. **Spójność i standardy**: Terminy i działania powinny być spójne w różnych częściach interfejsu.
 
-5. **Zapobieganie Błędom**: Lepiej zapobiegać błędom, niż polegać na ich późniejszym wykrywaniu i naprawie.
+5. **Zapobieganie błędom**: Lepiej zapobiegać błędom, niż polegać na ich późniejszym wykrywaniu i naprawie.
 
-6. **Rozpoznawanie zamiast Przypominania**: Obiekty i opcje powinny być widoczne i łatwo dostępne, tak aby użytkownicy nie musieli pamiętać informacji z innych części interfejsu.
+6. **Rozpoznawanie zamiast przypominania**: Obiekty i opcje powinny być widoczne i łatwo dostępne, tak aby użytkownicy nie musieli pamiętać informacji z innych części interfejsu.
 
-7. **Elastyczność i Efektywność Użycia**: Interfejs powinien być tak zaprojektowany, aby był użyteczny zarówno dla nowych, jak i doświadczonych użytkowników.
+7. **Elastyczność i efektywność użycia**: Interfejs powinien być tak zaprojektowany, aby był użyteczny zarówno dla nowych, jak i doświadczonych użytkowników.
 
-8. **Estetyczny i Minimalistyczny Wygląd**: Interfejs powinien być wolny od nieistotnych elementów, które mogą odciągać uwagę użytkownika od głównego zadania.
+8. **Estetyczny i minimalistyczny wygląd**: Interfejs powinien być wolny od nieistotnych elementów, które mogą odciągać uwagę użytkownika od głównego zadania.
 
-9. **Pomoc Użytkownikom w Rozpoznaniu, Diagnozowaniu i Naprawie Błędów**: Komunikaty o błędach powinny być jasne, precyzyjne i zawierać sugestie dotyczące ich rozwiązania.
+9. **Pomoc użytkownikom w rozpoznaniu, diagnozowaniu i naprawie błędów**: Komunikaty o błędach powinny być jasne, precyzyjne i zawierać sugestie dotyczące ich rozwiązania.
 
-10. **Dokumentacja i Pomoc**: Pomoc i dokumentacja, jeżeli są dostępne, powinny być skierowane do rozwiązania problemów użytkownika, być łatwo dostępne i łatwe w użyciu.
+10. **Dokumentacja i pomoc**: Pomoc i dokumentacja, jeżeli są dostępne, powinny być skierowane do rozwiązania problemów użytkownika, być łatwo dostępne i łatwe w użyciu.
