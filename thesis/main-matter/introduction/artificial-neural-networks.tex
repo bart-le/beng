@@ -316,7 +316,7 @@ LSTM wprowadza specjalną strukturę zwaną \enquote{bramkami}, które pozwalaj�
 
         \node[circle, draw=black, fill=gray!30, minimum size=10mm] (ct) at (4, 1.5) {$c_t$};
         \node[circle, draw=black, fill=gray!30, minimum size=10mm] (ht) at (4, -1.5) {$h_t$};
-        \node[circle, draw=black, fill=gray!30, minimum size=10mm] (xt2) at (2.5, 3) {$x_t$};
+        \node[circle, draw=black, fill=gray!30, minimum size=10mm] (ht2) at (2.5, 3) {$h_t$};
 
         \draw[rounded corners=0.25cm, thick] (ct_minus1) -- (mul1) -- (add1) -- (ct);
 
@@ -335,9 +335,9 @@ LSTM wprowadza specjalną strukturę zwaną \enquote{bramkami}, które pozwalaj�
         \draw[->, rounded corners=0.5cm, thick] (tanh2) -- (mul3);
 
         \draw[-, rounded corners=0.5cm, thick] (mul3) |- (ht);
-        \draw(ct -| xt2) ++(0, -0.1) coordinate (input1);
-        \draw[-, rounded corners=0.5cm, thick] (ht -| xt2)++(-0.5, 0) -| (input1);
-        \draw[-, rounded corners=0.5cm, thick] (input1)++(0, 0.2) -- (xt2);
+        \draw(ct -| ht2) ++(0, -0.1) coordinate (input1);
+        \draw[-, rounded corners=0.5cm, thick] (ht -| ht2)++(-0.5, 0) -| (input1);
+        \draw[-, rounded corners=0.5cm, thick] (input1)++(0, 0.2) -- (ht2);
     \end{tikzpicture}
     \caption{Komórka sieci LSTM}
     \label{fig:lstm-cell}
