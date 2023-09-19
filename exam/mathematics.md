@@ -34,7 +34,7 @@ Całka oznaczona jest równa polu powierzchni pod krzywą funkcji $f(x)$ w okre�
 
     Całkowanie przez podstawienie stosujemy, gdy wśród funkcji podcałkowej potrafimy wyodrębnić pewną funkcję i jej pochodną. Polega na zamianie zmiennych w celu uproszczenia całki.
 
-> **Przykładowe obliczenie całki $\int{8\cos{4x} \, dx}$**
+> **Przykładowe obliczenie całki $`\int{8\cos{4x} \, dx}`$**
 >
 > 1. Podstawienie $4x$ jako nowej zmiennej $t$ i obliczenie pochodnej $t$ względem $x$
 >
@@ -49,7 +49,7 @@ Całka oznaczona jest równa polu powierzchni pod krzywą funkcji $f(x)$ w okre�
 >
 >     $`\begin{aligned}\int{8\cos{t} \, \frac{dt}{4}} = \int{\cancel{8}\cos{t} \, \frac{dt}{\cancel{4}}} = \int{2\cos{t} \, dt}\end{aligned}`$
 >
-> 3. Uproszczenie wyrażenia wzorem $\int{\cos{x} \, dx} = \sin{x} + C$
+> 3. Uproszczenie wyrażenia wzorem $`\int{\cos{x} \, dx} = \sin{x} + C`$
 >
 >     $`\begin{aligned}\int{2\cos{t} \, dt} = 2\sin{t} + C\end{aligned}`$
 >
@@ -61,9 +61,9 @@ Całka oznaczona jest równa polu powierzchni pod krzywą funkcji $f(x)$ w okre�
 
     Wykorzystuje się do rozkładania całki dwóch funkcji, korzystając z reguły pochodzenia iloczynu dwóch funkcji. Całkowanie przez części jest dozwolone wtedy i tylko wtedy, gdy pochodne obu funkcji są funkcjami ciągłymi.
 
-    Jeżeli $f$ i $g$ mają ciągłe pochodne, to $\int{f(x) \cdot g'(x) \, dx} = f(x) \cdot g(x) − \int{f'(x) \cdot g(x) \, dx}$.
+    Jeżeli $f$ i $g$ mają ciągłe pochodne, to $`\int{f(x) \cdot g'(x) \, dx} = f(x) \cdot g(x) − \int{f'(x) \cdot g(x) \, dx}`$.
 
-> **Przykładowe obliczenie całki $\int{x \sin{x} \, dx}$**
+> **Przykładowe obliczenie całki $`\int{x \sin{x} \, dx}`$**
 >
 > 1. Obliczenie pochodnych funkcji $f$ i $g$
 >
@@ -132,7 +132,7 @@ Szeregiem Maclaurina nazywamy szereg Taylora, dla którego $x_0 = 0$.
 
 ## Układy równań liniowych, różne metody rozwiazywania, liczba rozwiązań
 
-Układem $m$ równań liniowych z $n$ niewiadomymi $x_1$, $x_2$, ..., $x_n$, gdzie $m$, $n \in \mathbb{N}$ nazywamy układ równań, gdzie $a_{ij} \in \mathbb{R}$, $b_i \in \mathbb{R}$ dla $1 \leq i \leq m$ oraz $1 \leq n \leq n$.
+Układem $m$ równań liniowych z $n$ niewiadomymi $x_1$, $x_2$, ..., $x_n$, gdzie $m$, $n \in \mathbb{N}$ nazywamy układ równań, gdzie $a_{ij} \in \mathbb{R}$, $b_i \in \mathbb{R}$ dla $1 \leq i \leq m$ oraz $1 \leq j \leq n$.
 
 Rozwiązaniem układu równań liniowych nazywamy ciąg ($x_1$, $x_2$, $\ldots$, $x_n$) liczb rzeczywistych spełniających ten układ. Układ równań, który nie ma rozwiązania, nazywamy układem sprzecznym.
 

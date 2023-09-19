@@ -363,8 +363,6 @@ Zapewnienie jakości (Quality Assurance) i testowanie oprogramowania to kluczowe
 -   **Odporność na Awarię**: Mierzy zdolność systemu do kontynuowania działania w przypadku wystąpienia błędów.
 -   **Czas Odpowiedzi**: Określa, jak szybko system odpowiada na różne rodzaje zapytań.
 
-Oczywiście, postaram się połączyć obydwa teksty w jeden spójny i zorganizowany dokument. Biorąc pod uwagę, że jesteś inżynierem front-endu, pewnie zależy Ci na przejrzystości i czytelności, także zastosuję te zasady przy redagowaniu.
-
 ### Ogólne kryteria jakości
 
 -   **Wydajność systemu**: Określa, jak szybko system realizuje zadania.
