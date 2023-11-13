@@ -160,7 +160,7 @@ def get_next_video_number(path: str, label: str) -> int:
     return len(existing_videos)
 
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     """
     This is a function that parses arguments from command line.
 
@@ -216,7 +216,7 @@ def parse_args():
     return parser.parse_args()
 
 
-def main(args) -> None:
+def main(args: argparse.Namespace) -> None:
     """
     Records videos based on command-line arguments.
 

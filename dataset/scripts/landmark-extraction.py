@@ -8,7 +8,7 @@ import pandas as pd
 from mediapipe.python.solutions import hands
 
 keypoints = [keypoint.name for keypoint in hands.HandLandmark]
-columns = [f"{keypoint}_{axis}" for keypoint in keypoints for axis in ["x", "y", "z"]]
+columns = [f"{keypoint}_{axis}" for keypoint in keypoints for axis in ["X", "Y", "Z"]]
 
 
 def detect_right_hand(multi_hand_landmarks: NamedTuple) -> int:
@@ -86,7 +86,7 @@ def extract_landmarks(input_path: str, output_path: str) -> None:
     print(f'Tabular data saved at "{output_path}".', end="\r", flush=True)
 
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     """
     This is a function that parses arguments from command line.
 
@@ -115,7 +115,7 @@ def parse_args():
     return parser.parse_args()
 
 
-def main(args) -> None:
+def main(args: argparse.Namespace) -> None:
     """
     Extracts keypoints from videos frames based on command-line arguments.
 
